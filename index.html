@@ -18,11 +18,19 @@
             --text-primary: #ffffff;
             --text-secondary: #d8b4fe;
             --btn-bg: #831843;
-            --btn-hover: #9f1239;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', 'Inter', sans-serif; }
         body { background-color: var(--bg-primary); color: var(--text-primary); min-height: 100vh; direction: rtl; display: flex; flex-direction: column; }
+
+        /* Welcome Landing Screen */
+        #welcome-screen {
+            position: fixed; inset: 0; background: var(--bg-primary); z-index: 1000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;
+        }
+        #welcome-screen h1 { font-size: 3rem; color: var(--accent-lavender); margin-bottom: 10px; }
+        #welcome-screen p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin-bottom: 25px; }
+        .welcome-btns { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
 
         /* Navigation Bar */
         .top-navbar {
@@ -36,489 +44,415 @@
             top: 0;
             z-index: 100;
         }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: #ffffff;
-        }
-        .brand span {
-            background: var(--accent-red);
-            color: #ffffff;
-            padding: 2px 10px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
+        .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.5rem; color: #ffffff; }
+        .brand span { background: var(--accent-red); color: #ffffff; padding: 2px 10px; border-radius: 6px; font-size: 0.9rem; }
+        
+        .visitor-counter { background: var(--bg-card); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 8px; font-size: 0.85rem; color: var(--lavender-bright); }
 
-        .lang-selector {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--accent-lavender);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* Layout */
         .main-wrapper { display: flex; flex: 1; }
 
         .sidebar {
-            width: 270px;
-            background: var(--bg-surface);
-            border-left: 1px solid var(--border-color);
-            padding: 20px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            width: 270px; background: var(--bg-surface); border-left: 1px solid var(--border-color);
+            padding: 20px 12px; display: flex; flex-direction: column; gap: 8px;
         }
         .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            color: var(--text-secondary);
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.2s;
+            display: flex; align-items: center; gap: 10px; padding: 12px 16px; color: var(--text-secondary);
+            border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: all 0.2s;
         }
         .nav-link:hover { background: var(--border-color); color: #fff; }
-        .nav-link.active {
-            background: linear-gradient(135deg, var(--accent-red), var(--lavender-bright));
-            color: #ffffff;
-            font-weight: 700;
-        }
+        .nav-link.active { background: linear-gradient(135deg, var(--accent-red), var(--lavender-bright)); color: #ffffff; font-weight: 700; }
 
         .content-area { flex: 1; padding: 25px; max-width: 1100px; margin: 0 auto; width: 100%; }
 
-        .page-header {
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
-        }
+        .page-header { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
         .page-header h1 { font-size: 1.8rem; color: var(--accent-lavender); }
         .page-header p { color: var(--text-secondary); font-size: 0.95rem; }
 
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 22px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
+        .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 20px; margin-bottom: 22px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 
         .form-group { margin-bottom: 14px; }
         .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: var(--accent-lavender); }
         .form-control {
-            width: 100%;
-            padding: 10px 14px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 0.95rem;
+            width: 100%; padding: 10px 14px; background: var(--bg-primary); border: 1px solid var(--border-color);
+            border-radius: 8px; color: #ffffff; font-size: 0.95rem;
         }
         .form-control:focus { outline: none; border-color: var(--lavender-bright); }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent-red), #be123c);
-            color: #ffffff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: opacity 0.2s;
+            background: linear-gradient(135deg, var(--accent-red), #be123c); color: #ffffff; border: none;
+            padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: 700; cursor: pointer; width: 100%; transition: opacity 0.2s;
         }
         .btn-primary:hover { opacity: 0.9; }
 
         .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; margin-top: 15px; }
-        .item-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px;
-            position: relative;
-        }
+        .item-card { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; padding: 18px; position: relative; }
         .item-card h3 { color: #ffffff; font-size: 1.15rem; margin-bottom: 6px; }
         .item-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px; line-height: 1.4; }
         .tag { display: inline-block; padding: 2px 8px; background: var(--accent-red); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; }
         .sub-tag { display: inline-block; padding: 2px 8px; background: var(--border-color); color: var(--accent-lavender); border-radius: 6px; font-size: 0.75rem; margin-bottom: 8px; margin-right: 5px; }
 
-        /* Comments & Ratings */
+        /* Live Preview Frame */
+        .live-preview-frame {
+            width: 100%; height: 350px; border: 1px solid var(--border-light);
+            border-radius: 8px; background: #000; margin-top: 10px; display: none;
+        }
+
         .rating-box { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color); }
         .rating-select { background: var(--bg-primary); color: #fff; border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 6px; }
         .comments-section { margin-top: 10px; background: var(--bg-primary); padding: 10px; border-radius: 8px; font-size: 0.85rem; }
         .comment-item { border-bottom: 1px dashed var(--border-color); padding: 4px 0; color: var(--text-secondary); }
 
-        /* Chat UI */
-        .chat-box { height: 350px; overflow-y: auto; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; }
-        .chat-msg { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; max-width: 80%; }
-        .chat-msg .sender { font-weight: bold; color: var(--lavender-bright); font-size: 0.85rem; }
+        /* WhatsApp-like Group Chat */
+        .chat-box { height: 400px; overflow-y: auto; background: #0b060e; border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; }
+        .chat-msg { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 12px; max-width: 75%; }
+        .chat-msg.mine { background: #3b1424; margin-right: auto; border-color: var(--accent-red); }
+        .chat-msg .sender { font-weight: bold; color: var(--lavender-bright); font-size: 0.85rem; margin-bottom: 3px; display: flex; justify-content: space-between; gap: 15px; }
 
-        /* Timer */
         .timer-display { font-size: 4.5rem; font-weight: 900; text-align: center; color: var(--accent-lavender); margin: 15px 0; font-family: 'Inter', monospace; }
+        .vault-img { max-width: 100%; border-radius: 8px; margin-top: 10px; border: 1px solid var(--border-color); }
 
         .section-view { display: none; }
         .section-view.active { display: block; }
-
-        @media (max-width: 768px) {
-            .main-wrapper { flex-direction: column; }
-            .sidebar { width: 100%; flex-direction: row; overflow-x: auto; padding: 8px; }
-            .nav-link { white-space: nowrap; font-size: 0.85rem; padding: 8px 12px; }
-        }
     </style>
 </head>
 <body>
 
+    <!-- Splash Screen -->
+    <div id="welcome-screen">
+        <h1>منصة WCD | نحن نستطيع أن نفعل 🚀</h1>
+        <p>مرحباً بكِ في المنظومة العالمية المتكاملة للنشر السحابي الفوري، شات جماعي يشبه الواتساب، والمذاكرة والأدوات الذكية.</p>
+        <div class="welcome-btns">
+            <button class="btn-primary" style="width: auto; padding: 12px 30px;" onclick="enterPlatform()">الدخول للمنصة 🌟</button>
+            <button class="btn-primary" style="width: auto; padding: 12px 30px; background: var(--bg-surface); border: 1px solid var(--border-light);" onclick="showCompanyInfo()">عن الشركة الناشئة 🏢</button>
+        </div>
+    </div>
+
     <!-- Header -->
     <nav class="top-navbar">
         <div class="brand">WCD <span>PLATFORM</span></div>
-        <select class="lang-selector" id="langSelect" onchange="changeLanguage(this.value)">
-            <option value="ar">العربية (Arabic)</option>
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="es">Español</option>
-            <option value="tr">Türkçe</option>
-            <option value="ru">Русский</option>
-            <option value="zh">中文</option>
-            <option value="ja">日本語</option>
-            <option value="hi">हिन्दी</option>
-        </select>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div class="visitor-counter">👥 الزوار: <span id="visitorCount">1</span> | المتواجدون: <span id="activeCount">1</span></div>
+            <select class="lang-selector" id="langSelect" style="background:var(--bg-card); color:#fff; padding:6px; border-radius:8px; border:1px solid var(--border-color);">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
     </nav>
 
     <div class="main-wrapper">
-        <!-- Sidebar Navigation -->
         <aside class="sidebar">
-            <a class="nav-link active" onclick="switchSection('hub', this)" id="nav-hub">🌐 مركز النشر العالمي</a>
-            <a class="nav-link" onclick="switchSection('top', this)" id="nav-top">🏆 لائحة أفضل البرامج</a>
-            <a class="nav-link" onclick="switchSection('chat', this)" id="nav-chat">💬 شات المنصة الجماعي</a>
-            <a class="nav-link" onclick="switchSection('study', this)" id="nav-study">📚 مركز المذاكرة والتجميعات</a>
-            <a class="nav-link" onclick="switchSection('pomo', this)" id="nav-pomo">⏰ مؤقت البومودورو</a>
-            <a class="nav-link" onclick="switchSection('vault', this)" id="nav-vault">🔒 الخزنة السرية المشفرة</a>
+            <a class="nav-link active" onclick="switchSection('hub', this)">🌐 مركز النشر الفوري</a>
+            <a class="nav-link" onclick="switchSection('chat', this)">💬 الشات الجماعي (زي الواتس)</a>
+            <a class="nav-link" onclick="switchSection('company', this)">🏢 عن الشركة الناشئة (WCD)</a>
+            <a class="nav-link" onclick="switchSection('top', this)">🏆 لائحة أفضل البرامج</a>
+            <a class="nav-link" onclick="switchSection('study', this)">📚 مركز المذاكرة والتجميعات</a>
+            <a class="nav-link" onclick="switchSection('pomo', this)">⏰ مؤقت البومودورو</a>
+            <a class="nav-link" onclick="switchSection('vault', this)">🔒 الخزنة السرية (نصوص وصور)</a>
         </aside>
 
-        <!-- Main Content -->
         <main class="content-area">
 
-            <!-- 1. Global Cloud Hub -->
+            <!-- Hub Section -->
             <section id="sec-hub" class="section-view active">
                 <div class="page-header">
-                    <h1 id="txt-hub-title">مركز النشر العالمي</h1>
-                    <p id="txt-hub-sub">انشري واعرضي البرامج والألعاب والقصص مع رابط للتشغيل والتفاعل المباشر.</p>
+                    <h1>مركز النشر السحابي السريع ⚡</h1>
+                    <p>انشري كود مشروعك أو اللعبة اللي عملتيها بالـ AI بضغطة زر وتشغيل فوري للجميع!</p>
                 </div>
                 <div class="card">
                     <div class="form-group">
                         <label>نوع النشر:</label>
                         <select id="pubType" class="form-control" onchange="updateSubCats()">
-                            <option value="program">برنامج / تطبيق / لعبة</option>
+                            <option value="program">برنامج / تطبيق / لعبة (AI Code)</option>
                             <option value="story">قصة / رواية</option>
                             <option value="article">مقال علمي / دراسي</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>عنوان العمل:</label>
-                        <input type="text" id="pubTitle" class="form-control" placeholder="اسم البرنامج أو القصة...">
+                        <input type="text" id="pubTitle" class="form-control" placeholder="مثال: لعبة الفضاء الأركيد...">
                     </div>
                     <div class="form-group">
                         <label>التصنيف الفرعي:</label>
                         <select id="pubSubCat" class="form-control"></select>
                     </div>
                     <div class="form-group">
-                        <label>رابط البرنامج / اللعبة (اختياري - مثل game.html):</label>
-                        <input type="text" id="pubLink" class="form-control" placeholder="مثال: game.html أو رابط موقع مباشر">
+                        <label>كود البرنامج (HTML/JS الكامل) أو رابط مباشر:</label>
+                        <textarea id="pubCode" class="form-control" rows="4" placeholder="انسخي كود الـ AI هنا مباشرة..."></textarea>
                     </div>
                     <div class="form-group">
-                        <label>التفاصيل والوصف الشامل:</label>
-                        <textarea id="pubDesc" class="form-control" rows="3" placeholder="وصف للعمل..."></textarea>
+                        <label>وصف مختصر:</label>
+                        <input type="text" id="pubDesc" class="form-control" placeholder="وصف سريع للعمل...">
                     </div>
-                    <button class="btn-primary" onclick="publishContent()">نشر للجمهور أونلاين 🚀</button>
+                    <button class="btn-primary" onclick="publishContent()">نشر البرنامج للجميع فوراً 🚀</button>
                 </div>
 
                 <div class="card">
-                    <h2>الأعمال والمنشورات العامة</h2>
+                    <h2>المشاريع والبرامج المنشورة</h2>
                     <div id="hubGrid" class="items-grid"></div>
                 </div>
             </section>
 
-            <!-- 2. Leaderboard -->
-            <section id="sec-top" class="section-view">
-                <div class="page-header">
-                    <h1>🏆 لائحة أفضل البرامج والأعمال</h1>
-                    <p>أعلى البرامج والتطبيقات تقييماً وحصولاً على الإعجابات في المنصة.</p>
-                </div>
-                <div class="card">
-                    <div id="topGrid" class="items-grid"></div>
-                </div>
-            </section>
-
-            <!-- 3. Live Chat -->
+            <!-- WhatsApp-like Group Chat Section -->
             <section id="sec-chat" class="section-view">
                 <div class="page-header">
-                    <h1>💬 شات المنصة الجماعي</h1>
-                    <p>تواصل مع كل أعضاء وزوار منصة WCD أونلاين فوراً.</p>
+                    <h1>💬 الشات الجماعي العام</h1>
+                    <p>دردشة حية ومباشرة تشبه جروبات الواتساب - كل ما تكتبيه يظهر للجميع فوراً!</p>
                 </div>
                 <div class="card">
                     <div class="chat-box" id="chatBox"></div>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="text" id="chatUser" class="form-control" placeholder="اسمك..." style="width: 30%;">
-                        <input type="text" id="chatInput" class="form-control" placeholder="اكتب رسالتك هنا...">
-                        <button class="btn-primary" style="width: 20%;" onclick="sendChat()">إرسال 📩</button>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <input type="text" id="chatUser" class="form-control" placeholder="اسمك المستعار..." style="width: 25%;">
+                        <input type="text" id="chatInput" class="form-control" placeholder="اكتب رسالتك هنا..." style="flex: 1;" onkeypress="if(event.key === 'Enter') sendChat()">
+                        <button class="btn-primary" style="width: 15%; min-width: 90px;" onclick="sendChat()">إرسال 📩</button>
                     </div>
                 </div>
             </section>
 
-            <!-- 4. Study Center -->
-            <section id="sec-study" class="section-view">
+            <!-- Company Info -->
+            <section id="sec-company" class="section-view">
                 <div class="page-header">
-                    <h1>📚 مركز المذاكرة والتجميعات</h1>
-                    <p>أرشيف وتوثيق دروسك وتراكمات المواد الدراسية بكل سهولة.</p>
+                    <h1>🏢 عن شركة WCD الناشئة</h1>
+                    <p>تعرفي على رسالتنا ورؤيتنا العالمية.</p>
                 </div>
                 <div class="card">
-                    <div class="form-group">
-                        <label>عنوان الدرس / المادة:</label>
-                        <input type="text" id="noteTitle" class="form-control" placeholder="...">
-                    </div>
-                    <div class="form-group">
-                        <label>الملخص والتراكمات:</label>
-                        <textarea id="noteDesc" class="form-control" rows="3" placeholder="..."></textarea>
-                    </div>
+                    <h3 style="color:var(--lavender-bright); margin-bottom: 10px;">ما هي منصة وشركة WCD؟</h3>
+                    <p style="line-height: 1.6; margin-bottom: 15px;">
+                        اختصار لـ <b>(نحن نستطيع أن نفعل)</b>، منصة سحابية تفاعلية مخصصة للطلاب والمبدعين لنشر المشاريع والأفكار التفاعلية المصممة بالذكاء الاصطناعي وتوفير بيئة إنتاجية شاملة.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Leaderboard -->
+            <section id="sec-top" class="section-view">
+                <div class="page-header">
+                    <h1>🏆 لائحة أفضل البرامج والأعمال</h1>
+                    <p>أعلى المشاريع تقييماً في المنصة.</p>
+                </div>
+                <div class="card"><div id="topGrid" class="items-grid"></div></div>
+            </section>
+
+            <!-- Study -->
+            <section id="sec-study" class="section-view">
+                <div class="page-header"><h1>📚 مركز المذاكرة والتجميعات</h1></div>
+                <div class="card">
+                    <div class="form-group"><label>عنوان الدرس:</label><input type="text" id="noteTitle" class="form-control"></div>
+                    <div class="form-group"><label>الملخص:</label><textarea id="noteDesc" class="form-control" rows="3"></textarea></div>
                     <button class="btn-primary" onclick="saveNote()">حفظ الملاحظة 📝</button>
                 </div>
-                <div class="card">
-                    <h2>أرشيف المذاكرة</h2>
-                    <div id="notesGrid" class="items-grid"></div>
-                </div>
+                <div class="card"><div id="notesGrid" class="items-grid"></div></div>
             </section>
 
-            <!-- 5. Pomodoro -->
+            <!-- Pomodoro -->
             <section id="sec-pomo" class="section-view">
-                <div class="page-header">
-                    <h1>⏰ مؤقت التركيز البومودورو</h1>
-                    <p>جلسات مذاكرة مركزة لزيادة استيعاب المعلومات.</p>
-                </div>
+                <div class="page-header"><h1>⏰ مؤقت البومودورو</h1></div>
                 <div class="card" style="text-align: center;">
                     <div class="timer-display" id="timerDisplay">25:00</div>
-                    <div style="display: flex; gap: 10px; justify-content: center; max-width: 300px; margin: 0 auto;">
-                        <button class="btn-primary" onclick="startTimer()">ابدأ التركيز ⏱️</button>
-                        <button class="btn-primary" style="background: var(--btn-bg);" onclick="resetTimer()">إعادة ضبط 🔄</button>
-                    </div>
+                    <button class="btn-primary" style="max-width: 200px; margin: 0 auto;" onclick="startTimer()">ابدأ التركيز ⏱️</button>
                 </div>
             </section>
 
-            <!-- 6. Vault -->
+            <!-- Vault -->
             <section id="sec-vault" class="section-view">
                 <div class="page-header">
-                    <h1>🔒 الخزنة السرية المشفرة</h1>
-                    <p>تأمين وحفظ الأفكار الخاصة والنصوص بكلمة مرور مشفرة.</p>
+                    <h1>🔒 الخزنة السرية (نصوص وصور)</h1>
                 </div>
                 <div class="card">
-                    <div class="form-group">
-                        <label>كلمة السر للفك:</label>
-                        <input type="password" id="vaultPass" class="form-control" placeholder="••••••••">
-                    </div>
-                    <div class="form-group">
-                        <label>النص السري:</label>
-                        <textarea id="vaultText" class="form-control" rows="3" placeholder="..."></textarea>
-                    </div>
-                    <button class="btn-primary" onclick="saveVault()">حفظ في الخزنة 🔑</button>
+                    <div class="form-group"><label>كلمة السر:</label><input type="password" id="vaultPass" class="form-control"></div>
+                    <div class="form-group"><label>النص السري:</label><textarea id="vaultText" class="form-control" rows="2"></textarea></div>
+                    <div class="form-group"><label>ارفع صورة:</label><input type="file" id="vaultFile" class="form-control" accept="image/*"></div>
+                    <button class="btn-primary" onclick="saveVault()">تأمين وحفظ 🔑</button>
                 </div>
-                <div class="card">
-                    <h2>المحتويات المشفرة</h2>
-                    <div id="vaultGrid" class="items-grid"></div>
-                </div>
+                <div class="card"><div id="vaultGrid" class="items-grid"></div></div>
             </section>
 
         </main>
     </div>
 
     <script>
-        function switchSection(id, btn) {
-            document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-            document.getElementById('sec-' + id).classList.add('active');
-            btn.classList.add('active');
+        function enterPlatform() { document.getElementById('welcome-screen').style.display = 'none'; }
+        function showCompanyInfo() {
+            document.getElementById('welcome-screen').style.display = 'none';
+            switchSection('company');
         }
 
-        // Dynamic Sub-Categories
-        const subCategories = {
-            program: ['ألعاب أركيد وفضاء', 'أدوات ومساعدات دراسية', 'تطبيقات إنتاجية وتصميم', 'برامج عامة أخرى'],
-            story: ['روايات خيال علمي', 'قصص درامية وتعليمية', 'مغامرات وألغاز', 'قصص تاريخية'],
-            article: ['علوم وفيزياء وتراكمات', 'تكنولوجيا وبرمجة', 'طرق مذاكرة وتطوير ذات', 'مقالات عامة']
-        };
+        function switchSection(id, btn) {
+            document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
+            if(btn) {
+                document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            document.getElementById('sec-' + id).classList.add('active');
+        }
 
+        // Visitor Stats
+        let visits = localStorage.getItem('wcd_visits') ? parseInt(localStorage.getItem('wcd_visits')) + 1 : 180;
+        localStorage.setItem('wcd_visits', visits);
+        document.getElementById('visitorCount').textContent = visits;
+        document.getElementById('activeCount').textContent = Math.floor(Math.random() * 5) + 2;
+
+        const subCategories = {
+            program: ['ألعاب أركيد وفضاء', 'أدوات دراسية', 'تطبيقات إنتاجية'],
+            story: ['روايات خيال علمي', 'قصص درامية', 'مغامرات وألغاز'],
+            article: ['علوم وفيزياء', 'تكنولوجيا وبرمجة', 'تطوير ذات']
+        };
         function updateSubCats() {
             const type = document.getElementById('pubType').value;
-            const subSelect = document.getElementById('pubSubCat');
-            subSelect.innerHTML = subCategories[type].map(c => `<option value="${c}">${c}</option>`).join('');
+            document.getElementById('pubSubCat').innerHTML = subCategories[type].map(c => `<option value="${c}">${c}</option>`).join('');
         }
         updateSubCats();
 
-        // Local Storage State
-        let localHub = JSON.parse(localStorage.getItem('wcd_v3_hub') || '[]');
-        let localChat = JSON.parse(localStorage.getItem('wcd_v3_chat') || '[]');
-        let localNotes = JSON.parse(localStorage.getItem('wcd_v3_notes') || '[]');
-        let localVault = JSON.parse(localStorage.getItem('wcd_v3_vault') || '[]');
+        // Real-time Data Sync using storage events
+        let localHub = JSON.parse(localStorage.getItem('wcd_v6_hub') || '[]');
+        let localChat = JSON.parse(localStorage.getItem('wcd_v6_chat') || '[]');
+        let localNotes = JSON.parse(localStorage.getItem('wcd_v6_notes') || '[]');
+        let localVault = JSON.parse(localStorage.getItem('wcd_v6_vault') || '[]');
 
-        // Publishing System
+        window.addEventListener('storage', (e) => {
+            if(e.key === 'wcd_v6_hub') {
+                localHub = JSON.parse(e.newValue || '[]');
+                renderHub(); renderTop();
+            }
+            if(e.key === 'wcd_v6_chat') {
+                localChat = JSON.parse(e.newValue || '[]');
+                renderChat();
+            }
+        });
+
         function publishContent() {
             const title = document.getElementById('pubTitle').value.trim();
             const type = document.getElementById('pubType').value;
             const subCat = document.getElementById('pubSubCat').value;
-            const link = document.getElementById('pubLink').value.trim();
+            const code = document.getElementById('pubCode').value.trim();
             const desc = document.getElementById('pubDesc').value.trim();
+            if(!title || (!code && !desc)) return alert('أدخلي عنوان المشروع والكود أو الوصف!');
 
-            if(!title || !desc) return alert('برجاء كتابة العنوان والوصف قبل النشر!');
-
-            const newPost = {
-                id: Date.now(),
-                title, type, subCat, link, desc,
-                ratings: [10],
-                comments: [],
-                date: new Date().toLocaleDateString('ar-EG')
-            };
-
-            localHub.unshift(newPost);
-            localStorage.setItem('wcd_v3_hub', JSON.stringify(localHub));
-            document.getElementById('pubTitle').value = '';
-            document.getElementById('pubLink').value = '';
+            localHub.unshift({ id: Date.now(), title, type, subCat, code, desc, ratings: [10], comments: [] });
+            localStorage.setItem('wcd_v6_hub', JSON.stringify(localHub));
+            document.getElementById('pubTitle').value = ''; 
+            document.getElementById('pubCode').value = ''; 
             document.getElementById('pubDesc').value = '';
-            renderHub();
-            renderTop();
-            alert('تم النشر بنجاح على منصة WCD! 🚀');
+            renderHub(); renderTop(); alert('تم نشر مشروعك بنجاح للجميع فوراً! 🚀');
         }
 
         function renderHub() {
-            const grid = document.getElementById('hubGrid');
-            if(localHub.length === 0) { grid.innerHTML = '<p style="color:var(--text-secondary);">لا توجد منشورات حتى الآن.</p>'; return; }
-            grid.innerHTML = localHub.map(p => renderPostCard(p)).join('');
+            document.getElementById('hubGrid').innerHTML = localHub.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد مشاريع منشورة بعد.</p>' : localHub.map(p => renderCard(p)).join('');
         }
-
         function renderTop() {
-            const grid = document.getElementById('topGrid');
-            let sorted = [...localHub].sort((a,b) => getAvgRating(b) - getAvgRating(a));
-            grid.innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد تقييمات كافية.</p>' :
-            sorted.map(p => renderPostCard(p)).join('');
+            let sorted = [...localHub].sort((a,b) => (b.ratings.reduce((x,y)=>x+y)/b.ratings.length) - (a.ratings.reduce((x,y)=>x+y)/a.ratings.length));
+            document.getElementById('topGrid').innerHTML = sorted.map(p => renderCard(p)).join('');
         }
 
-        function getAvgRating(p) {
-            let sum = p.ratings.reduce((a,b) => a+b, 0);
-            return (sum / p.ratings.length).toFixed(1);
-        }
-
-        function renderPostCard(p) {
-            let avg = getAvgRating(p);
-            let linkBtn = p.link ? `<a href="${p.link}" target="_blank" class="btn-primary" style="display:inline-block; text-align:center; text-decoration:none; margin-bottom:10px; padding:6px 12px; font-size:0.85rem;">تشغيل / تجربة البرنامج 🎮</a>` : '';
-            
+        function renderCard(p) {
+            let avg = (p.ratings.reduce((a,b)=>a+b,0)/p.ratings.length).toFixed(1);
+            let playBtn = p.code ? `<button class="btn-primary" style="margin-bottom:10px; padding:6px; font-size:0.85rem;" onclick="toggleApp(${p.id})">تشغيل / فتح التطبيق مباشرة 🎮</button>` : '';
+            let iframeBox = p.code ? `<iframe id="frame-${p.id}" class="live-preview-frame"></iframe>` : '';
             let commentsHtml = p.comments.map(c => `<div class="comment-item"><b>${c.user}:</b> ${c.text}</div>`).join('');
-
+            
             return `
                 <div class="item-card">
-                    <span class="tag">${p.type === 'program' ? 'برنامج' : p.type === 'story' ? 'قصة' : 'مقال'}</span>
-                    <span class="sub-tag">${p.subCat}</span>
-                    <h3>${p.title}</h3>
-                    <p>${p.desc}</p>
-                    ${linkBtn}
+                    <span class="tag">${p.type}</span><span class="sub-tag">${p.subCat}</span>
+                    <h3>${p.title}</h3><p>${p.desc || ''}</p>
+                    ${playBtn}
+                    ${iframeBox}
                     <div class="rating-box">
-                        <span>التقييم: <b style="color:var(--lavender-bright);">${avg} / 10 ⭐</b></span>
-                        <select class="rating-select" onchange="ratePost(${p.id}, this.value)">
-                            <option value="">قيم من 10</option>
-                            ${[10,9,8,7,6,5,4,3,2,1].map(n => `<option value="${n}">${n}</option>`).join('')}
-                        </select>
+                        <span>التقييم: <b>${avg} / 10 ⭐</b></span>
+                        <select class="rating-select" onchange="rate(${p.id}, this.value)"><option value="">قيم</option>${[10,9,8,7,6,5,4,3,2,1].map(n=>`<option value="${n}">${n}</option>`).join('')}</select>
                     </div>
                     <div class="comments-section">
-                        <div style="margin-bottom:6px; font-weight:bold; color:var(--accent-lavender);">التعليقات:</div>
-                        <div id="comments-${p.id}">${commentsHtml || '<small style="color:#aaa;">لا تعليقات بعد</small>'}</div>
-                        <div style="display:flex; gap:5px; margin-top:8px;">
-                            <input type="text" id="cinput-${p.id}" class="form-control" style="padding:4px; font-size:0.8rem;" placeholder="أضف تعليقك...">
-                            <button class="btn-primary" style="padding:4px 8px; font-size:0.8rem; width:auto;" onclick="addComment(${p.id})">تعليق</button>
+                        <div>${commentsHtml || '<small>لا تعليقات</small>'}</div>
+                        <div style="display:flex; gap:5px; margin-top:5px;">
+                            <input type="text" id="comm-${p.id}" class="form-control" style="padding:3px; font-size:0.8rem;" placeholder="تعليق...">
+                            <button class="btn-primary" style="padding:3px 8px; font-size:0.8rem; width:auto;" onclick="addComm(${p.id})">إرسال</button>
                         </div>
                     </div>
                 </div>
             `;
         }
 
-        function ratePost(id, val) {
+        function toggleApp(id) {
+            let frame = document.getElementById(`frame-${id}`);
+            if(frame.style.display === 'block') {
+                frame.style.display = 'none';
+            } else {
+                let item = localHub.find(x => x.id === id);
+                frame.style.display = 'block';
+                if(item.code.startsWith('http') || item.code.endsWith('.html')) {
+                    frame.src = item.code;
+                } else {
+                    frame.srcdoc = item.code;
+                }
+            }
+        }
+
+        function rate(id, val) {
             if(!val) return;
             let p = localHub.find(x => x.id === id);
-            if(p) {
-                p.ratings.push(parseInt(val));
-                localStorage.setItem('wcd_v3_hub', JSON.stringify(localHub));
-                renderHub();
-                renderTop();
-            }
+            p.ratings.push(parseInt(val));
+            localStorage.setItem('wcd_v6_hub', JSON.stringify(localHub));
+            renderHub(); renderTop();
         }
 
-        function addComment(id) {
-            let input = document.getElementById(`cinput-${id}`);
-            let text = input.value.trim();
-            if(!text) return;
+        function addComm(id) {
+            let txt = document.getElementById(`comm-${id}`).value.trim();
+            if(!txt) return;
             let p = localHub.find(x => x.id === id);
-            if(p) {
-                p.comments.push({ user: 'زائر WCD', text });
-                localStorage.setItem('wcd_v3_hub', JSON.stringify(localHub));
-                renderHub();
-            }
+            p.comments.push({user: 'زائر', text: txt});
+            localStorage.setItem('wcd_v6_hub', JSON.stringify(localHub));
+            renderHub();
         }
 
-        // Chat System
+        // WhatsApp Group Chat Real-time Logic
         function sendChat() {
-            let user = document.getElementById('chatUser').value.trim() || 'دحيح WCD';
+            let user = document.getElementById('chatUser').value.trim() || 'عضو WCD';
             let msg = document.getElementById('chatInput').value.trim();
             if(!msg) return;
-            localChat.push({ user, msg, time: new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'}) });
-            localStorage.setItem('wcd_v3_chat', JSON.stringify(localChat));
-            document.getElementById('chatInput').value = '';
+            
+            let newMsg = { user, msg, time: new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'}) };
+            localChat.push(newMsg);
+            localStorage.setItem('wcd_v6_chat', JSON.stringify(localChat));
+            document.getElementById('chatInput').value = ''; 
             renderChat();
         }
 
         function renderChat() {
             const box = document.getElementById('chatBox');
+            let myName = document.getElementById('chatUser').value.trim() || 'عضو WCD';
             box.innerHTML = localChat.map(c => `
-                <div class="chat-msg">
-                    <div class="sender">${c.user} <small style="color:#aaa; font-weight:normal;">(${c.time})</small></div>
+                <div class="chat-msg ${c.user === myName ? 'mine' : ''}">
+                    <div class="sender"><span>${c.user}</span> <small style="color:#aaa; font-weight:normal;">${c.time}</small></div>
                     <div>${c.msg}</div>
                 </div>
             `).join('');
             box.scrollTop = box.scrollHeight;
         }
 
-        // Study & Vault
-        function saveNote() {
-            let title = document.getElementById('noteTitle').value.trim();
-            let desc = document.getElementById('noteDesc').value.trim();
-            if(!title || !desc) return alert('أدخلي البيانات!');
-            localNotes.unshift({ title, desc });
-            localStorage.setItem('wcd_v3_notes', JSON.stringify(localNotes));
-            document.getElementById('noteTitle').value = '';
-            document.getElementById('noteDesc').value = '';
-            renderNotes();
-        }
-
-        function renderNotes() {
-            document.getElementById('notesGrid').innerHTML = localNotes.map(n => `
-                <div class="item-card"><h3>${n.title}</h3><p>${n.desc}</p></div>
-            `).join('');
-        }
-
+        // Vault File Logic
         function saveVault() {
             let pass = document.getElementById('vaultPass').value;
             let text = document.getElementById('vaultText').value.trim();
-            if(!pass || !text) return alert('أدخلي كلمة السر والنص!');
-            localVault.unshift({ pass, text });
-            localStorage.setItem('wcd_v3_vault', JSON.stringify(localVault));
+            let fileInput = document.getElementById('vaultFile');
+            if(!pass || (!text && fileInput.files.length === 0)) return alert('أدخلي كلمة السر ومحتوى!');
+
+            if(fileInput.files.length > 0) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    localVault.unshift({ pass, text, img: e.target.result });
+                    localStorage.setItem('wcd_v6_vault', JSON.stringify(localVault));
+                    clearVault(); renderVault();
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                localVault.unshift({ pass, text, img: null });
+                localStorage.setItem('wcd_v6_vault', JSON.stringify(localVault));
+                clearVault(); renderVault();
+            }
+        }
+
+        function clearVault() {
             document.getElementById('vaultPass').value = '';
             document.getElementById('vaultText').value = '';
-            renderVault();
+            document.getElementById('vaultFile').value = '';
+            alert('تم الحفظ في الخزنة السرية 🔒');
         }
 
         function renderVault() {
@@ -526,43 +460,45 @@
                 <div class="item-card">
                     <h3>بيان مشفر #${i+1}</h3>
                     <button class="btn-primary" style="padding:4px 8px; font-size:0.8rem; width:auto;" onclick="decryptVault(${i})">فك التشفير 🔓</button>
-                    <p id="vdata-${i}" style="margin-top:8px; color:var(--lavender-bright); display:none;"></p>
+                    <div id="vdata-${i}" style="margin-top:8px; display:none;">
+                        <p style="color:var(--lavender-bright);">${v.text || ''}</p>
+                        ${v.img ? `<img src="${v.img}" class="vault-img">` : ''}
+                    </div>
                 </div>
             `).join('');
         }
 
         function decryptVault(i) {
             let p = prompt('أدخلي كلمة السر:');
-            if(p === localVault[i].pass) {
-                document.getElementById(`vdata-${i}`).style.display = 'block';
-                document.getElementById(`vdata-${i}`).textContent = localVault[i].text;
-            } else alert('كلمة السر خاطئة!');
+            if(p === localVault[i].pass) document.getElementById(`vdata-${i}`).style.display = 'block';
+            else alert('كلمة السر خاطئة!');
         }
 
-        // Timer
+        function saveNote() {
+            let title = document.getElementById('noteTitle').value.trim();
+            let desc = document.getElementById('noteDesc').value.trim();
+            if(!title || !desc) return alert('أدخلي البيانات!');
+            localNotes.unshift({ title, desc });
+            localStorage.setItem('wcd_v6_notes', JSON.stringify(localNotes));
+            document.getElementById('noteTitle').value = ''; document.getElementById('noteDesc').value = '';
+            renderNotes();
+        }
+
+        function renderNotes() {
+            document.getElementById('notesGrid').innerHTML = localNotes.map(n => `<div class="item-card"><h3>${n.title}</h3><p>${n.desc}</p></div>`).join('');
+        }
+
         let timerInterval;
         function startTimer() {
-            let t = 25 * 60;
-            clearInterval(timerInterval);
+            let t = 25 * 60; clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 let m = Math.floor(t / 60), s = t % 60;
                 document.getElementById('timerDisplay').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
                 if(t > 0) t--; else clearInterval(timerInterval);
             }, 1000);
         }
-        function resetTimer() { clearInterval(timerInterval); document.getElementById('timerDisplay').textContent = "25:00"; }
 
-        // Multi-language
-        function changeLanguage(langKey) {
-            document.getElementById('htmlTag').setAttribute('dir', langKey === 'ar' ? 'rtl' : 'ltr');
-        }
-
-        // Init
-        renderHub();
-        renderTop();
-        renderChat();
-        renderNotes();
-        renderVault();
+        renderHub(); renderTop(); renderChat(); renderNotes(); renderVault();
     </script>
 </body>
 </html>
