@@ -23,7 +23,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', 'Inter', sans-serif; }
         body { background-color: var(--bg-primary); color: var(--text-primary); min-height: 100vh; direction: rtl; display: flex; flex-direction: column; }
 
-        /* Welcome Landing Screen */
+        /* Splash Screen */
         #welcome-screen {
             position: fixed; inset: 0; background: var(--bg-primary); z-index: 1000;
             display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;
@@ -91,9 +91,8 @@
         .tag { display: inline-block; padding: 2px 8px; background: var(--accent-red); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; }
         .sub-tag { display: inline-block; padding: 2px 8px; background: var(--border-color); color: var(--accent-lavender); border-radius: 6px; font-size: 0.75rem; margin-bottom: 8px; margin-right: 5px; }
 
-        /* Live Preview Frame */
         .live-preview-frame {
-            width: 100%; height: 350px; border: 1px solid var(--border-light);
+            width: 100%; height: 380px; border: 1px solid var(--border-light);
             border-radius: 8px; background: #000; margin-top: 10px; display: none;
         }
 
@@ -102,9 +101,9 @@
         .comments-section { margin-top: 10px; background: var(--bg-primary); padding: 10px; border-radius: 8px; font-size: 0.85rem; }
         .comment-item { border-bottom: 1px dashed var(--border-color); padding: 4px 0; color: var(--text-secondary); }
 
-        /* WhatsApp-like Group Chat */
-        .chat-box { height: 400px; overflow-y: auto; background: #0b060e; border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; }
-        .chat-msg { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 12px; max-width: 75%; }
+        /* WhatsApp Group Chat UI */
+        .chat-box { height: 420px; overflow-y: auto; background: #0b060e; border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; }
+        .chat-msg { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 12px; max-width: 80%; }
         .chat-msg.mine { background: #3b1424; margin-right: auto; border-color: var(--accent-red); }
         .chat-msg .sender { font-weight: bold; color: var(--lavender-bright); font-size: 0.85rem; margin-bottom: 3px; display: flex; justify-content: space-between; gap: 15px; }
 
@@ -120,7 +119,7 @@
     <!-- Splash Screen -->
     <div id="welcome-screen">
         <h1>منصة WCD | نحن نستطيع أن نفعل 🚀</h1>
-        <p>مرحباً بكِ في المنظومة العالمية المتكاملة للنشر السحابي الفوري، شات جماعي يشبه الواتساب، والمذاكرة والأدوات الذكية.</p>
+        <p>مرحباً بكِ في المنظومة العالمية المتكاملة للنشر السحابي الفوري، الشات المباشر، والمذاكرة والأدوات الذكية.</p>
         <div class="welcome-btns">
             <button class="btn-primary" style="width: auto; padding: 12px 30px;" onclick="enterPlatform()">الدخول للمنصة 🌟</button>
             <button class="btn-primary" style="width: auto; padding: 12px 30px; background: var(--bg-surface); border: 1px solid var(--border-light);" onclick="showCompanyInfo()">عن الشركة الناشئة 🏢</button>
@@ -142,7 +141,7 @@
     <div class="main-wrapper">
         <aside class="sidebar">
             <a class="nav-link active" onclick="switchSection('hub', this)">🌐 مركز النشر الفوري</a>
-            <a class="nav-link" onclick="switchSection('chat', this)">💬 الشات الجماعي (زي الواتس)</a>
+            <a class="nav-link" onclick="switchSection('chat', this)">💬 الشات المباشر (تواصل فوري)</a>
             <a class="nav-link" onclick="switchSection('company', this)">🏢 عن الشركة الناشئة (WCD)</a>
             <a class="nav-link" onclick="switchSection('top', this)">🏆 لائحة أفضل البرامج</a>
             <a class="nav-link" onclick="switchSection('study', this)">📚 مركز المذاكرة والتجميعات</a>
@@ -155,48 +154,52 @@
             <!-- Hub Section -->
             <section id="sec-hub" class="section-view active">
                 <div class="page-header">
-                    <h1>مركز النشر السحابي السريع ⚡</h1>
-                    <p>انشري كود مشروعك أو اللعبة اللي عملتيها بالـ AI بضغطة زر وتشغيل فوري للجميع!</p>
+                    <h1>مركز النشر السحابي والألعاب 🎮</h1>
+                    <p>انشري ألعابك الجاهزة أو أي كود برنامج بسهولة بضغطة زر واحدة ليلعبها الجميع أونلاين!</p>
                 </div>
                 <div class="card">
                     <div class="form-group">
-                        <label>نوع النشر:</label>
-                        <select id="pubType" class="form-control" onchange="updateSubCats()">
-                            <option value="program">برنامج / تطبيق / لعبة (AI Code)</option>
-                            <option value="story">قصة / رواية</option>
-                            <option value="article">مقال علمي / دراسي</option>
+                        <label>اختر لعبة أو أداة جاهزة لنشرها فوراً:</label>
+                        <select id="presetGameSelect" class="form-control" onchange="loadPresetGame(this.value)">
+                            <option value="">-- اختر لعبة جاهزة لنشرها بنقرة واحدة --</option>
+                            <option value="space">🚀 لعبة الفضاء WCD Space Shooter</option>
+                            <option value="custom">✏️ أو أدخل كود لعبة/برنامج جديد بنفسك</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>عنوان العمل:</label>
-                        <input type="text" id="pubTitle" class="form-control" placeholder="مثال: لعبة الفضاء الأركيد...">
+                        <label>عنوان العمل / اللعبة:</label>
+                        <input type="text" id="pubTitle" class="form-control" placeholder="اسم اللعبة أو البرنامج...">
                     </div>
                     <div class="form-group">
-                        <label>التصنيف الفرعي:</label>
-                        <select id="pubSubCat" class="form-control"></select>
+                        <label>التصنيف:</label>
+                        <select id="pubSubCat" class="form-control">
+                            <option value="ألعاب أركيد وفضاء">ألعاب أركيد وفضاء</option>
+                            <option value="أدوات دراسية">أدوات دراسية</option>
+                            <option value="تطبيقات إنتاجية">تطبيقات إنتاجية</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>كود البرنامج (HTML/JS الكامل) أو رابط مباشر:</label>
-                        <textarea id="pubCode" class="form-control" rows="4" placeholder="انسخي كود الـ AI هنا مباشرة..."></textarea>
+                        <label>كود اللعبة / البرنامج (HTML / JS) أو رابط game.html:</label>
+                        <textarea id="pubCode" class="form-control" rows="4" placeholder="الكود ينزل هنا تلقائياً عند اختيار لعبة، أو ضع رابط game.html..."></textarea>
                     </div>
                     <div class="form-group">
                         <label>وصف مختصر:</label>
-                        <input type="text" id="pubDesc" class="form-control" placeholder="وصف سريع للعمل...">
+                        <input type="text" id="pubDesc" class="form-control" placeholder="وصف سريع للعبة...">
                     </div>
-                    <button class="btn-primary" onclick="publishContent()">نشر البرنامج للجميع فوراً 🚀</button>
+                    <button class="btn-primary" onclick="publishContent()">نشر اللعبة / البرنامج للجميع 🚀</button>
                 </div>
 
                 <div class="card">
-                    <h2>المشاريع والبرامج المنشورة</h2>
+                    <h2>الألعاب والبرامج المنشورة</h2>
                     <div id="hubGrid" class="items-grid"></div>
                 </div>
             </section>
 
-            <!-- WhatsApp-like Group Chat Section -->
+            <!-- Realtime Chat Section -->
             <section id="sec-chat" class="section-view">
                 <div class="page-header">
-                    <h1>💬 الشات الجماعي العام</h1>
-                    <p>دردشة حية ومباشرة تشبه جروبات الواتساب - كل ما تكتبيه يظهر للجميع فوراً!</p>
+                    <h1>💬 الشات الجماعي المباشر</h1>
+                    <p>جروب محادثة حية - أي كلمة تكتبيها بتوصل وتظهر لكل شخص فاتح الموقع أونلاين فوراً!</p>
                 </div>
                 <div class="card">
                     <div class="chat-box" id="chatBox"></div>
@@ -268,6 +271,29 @@
         </main>
     </div>
 
+    <!-- Firebase SDK for Global Realtime Chat -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            databaseURL: "https://wcd-platform-default-rtdb.firebaseio.com"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const chatRef = ref(db, 'global_chat');
+
+        window.sendGlobalChat = function(user, msg) {
+            push(chatRef, { user, msg, time: new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'}) });
+        };
+
+        onChildAdded(chatRef, (snapshot) => {
+            const data = snapshot.val();
+            appendChatMsg(data);
+        });
+    </script>
+
     <script>
         function enterPlatform() { document.getElementById('welcome-screen').style.display = 'none'; }
         function showCompanyInfo() {
@@ -284,58 +310,42 @@
             document.getElementById('sec-' + id).classList.add('active');
         }
 
-        // Visitor Stats
-        let visits = localStorage.getItem('wcd_visits') ? parseInt(localStorage.getItem('wcd_visits')) + 1 : 180;
+        // Preset Game Auto-Fill
+        function loadPresetGame(val) {
+            if(val === 'space') {
+                document.getElementById('pubTitle').value = '🚀 لعبة الفضاء WCD Space Shooter';
+                document.getElementById('pubDesc').value = 'لعبة أركيد تفاعلية ممتعة لتدمير الكويكبات وجمع النقاط!';
+                document.getElementById('pubCode').value = 'game.html';
+            }
+        }
+
+        // Visitor Counter
+        let visits = localStorage.getItem('wcd_visits') ? parseInt(localStorage.getItem('wcd_visits')) + 1 : 210;
         localStorage.setItem('wcd_visits', visits);
         document.getElementById('visitorCount').textContent = visits;
-        document.getElementById('activeCount').textContent = Math.floor(Math.random() * 5) + 2;
+        document.getElementById('activeCount').textContent = Math.floor(Math.random() * 5) + 3;
 
-        const subCategories = {
-            program: ['ألعاب أركيد وفضاء', 'أدوات دراسية', 'تطبيقات إنتاجية'],
-            story: ['روايات خيال علمي', 'قصص درامية', 'مغامرات وألغاز'],
-            article: ['علوم وفيزياء', 'تكنولوجيا وبرمجة', 'تطوير ذات']
-        };
-        function updateSubCats() {
-            const type = document.getElementById('pubType').value;
-            document.getElementById('pubSubCat').innerHTML = subCategories[type].map(c => `<option value="${c}">${c}</option>`).join('');
-        }
-        updateSubCats();
-
-        // Real-time Data Sync using storage events
-        let localHub = JSON.parse(localStorage.getItem('wcd_v6_hub') || '[]');
-        let localChat = JSON.parse(localStorage.getItem('wcd_v6_chat') || '[]');
-        let localNotes = JSON.parse(localStorage.getItem('wcd_v6_notes') || '[]');
-        let localVault = JSON.parse(localStorage.getItem('wcd_v6_vault') || '[]');
-
-        window.addEventListener('storage', (e) => {
-            if(e.key === 'wcd_v6_hub') {
-                localHub = JSON.parse(e.newValue || '[]');
-                renderHub(); renderTop();
-            }
-            if(e.key === 'wcd_v6_chat') {
-                localChat = JSON.parse(e.newValue || '[]');
-                renderChat();
-            }
-        });
+        let localHub = JSON.parse(localStorage.getItem('wcd_v7_hub') || '[]');
+        let localNotes = JSON.parse(localStorage.getItem('wcd_v7_notes') || '[]');
+        let localVault = JSON.parse(localStorage.getItem('wcd_v7_vault') || '[]');
 
         function publishContent() {
             const title = document.getElementById('pubTitle').value.trim();
-            const type = document.getElementById('pubType').value;
             const subCat = document.getElementById('pubSubCat').value;
             const code = document.getElementById('pubCode').value.trim();
             const desc = document.getElementById('pubDesc').value.trim();
-            if(!title || (!code && !desc)) return alert('أدخلي عنوان المشروع والكود أو الوصف!');
+            if(!title || !code) return alert('أدخلي عنوان اللعبة ورابطها أو كودها!');
 
-            localHub.unshift({ id: Date.now(), title, type, subCat, code, desc, ratings: [10], comments: [] });
-            localStorage.setItem('wcd_v6_hub', JSON.stringify(localHub));
+            localHub.unshift({ id: Date.now(), title, type: 'برنامج/لعبة', subCat, code, desc, ratings: [10], comments: [] });
+            localStorage.setItem('wcd_v7_hub', JSON.stringify(localHub));
             document.getElementById('pubTitle').value = ''; 
             document.getElementById('pubCode').value = ''; 
             document.getElementById('pubDesc').value = '';
-            renderHub(); renderTop(); alert('تم نشر مشروعك بنجاح للجميع فوراً! 🚀');
+            renderHub(); renderTop(); alert('تم نشر اللعبة بنجاح وسيمكن للجميع لعبها الآن! 🚀');
         }
 
         function renderHub() {
-            document.getElementById('hubGrid').innerHTML = localHub.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد مشاريع منشورة بعد.</p>' : localHub.map(p => renderCard(p)).join('');
+            document.getElementById('hubGrid').innerHTML = localHub.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد ألعاب منشورة بعد.</p>' : localHub.map(p => renderCard(p)).join('');
         }
         function renderTop() {
             let sorted = [...localHub].sort((a,b) => (b.ratings.reduce((x,y)=>x+y)/b.ratings.length) - (a.ratings.reduce((x,y)=>x+y)/a.ratings.length));
@@ -344,8 +354,8 @@
 
         function renderCard(p) {
             let avg = (p.ratings.reduce((a,b)=>a+b,0)/p.ratings.length).toFixed(1);
-            let playBtn = p.code ? `<button class="btn-primary" style="margin-bottom:10px; padding:6px; font-size:0.85rem;" onclick="toggleApp(${p.id})">تشغيل / فتح التطبيق مباشرة 🎮</button>` : '';
-            let iframeBox = p.code ? `<iframe id="frame-${p.id}" class="live-preview-frame"></iframe>` : '';
+            let playBtn = `<button class="btn-primary" style="margin-bottom:10px; padding:6px; font-size:0.85rem;" onclick="toggleApp(${p.id})">العب اللعبة فوراً 🎮</button>`;
+            let iframeBox = `<iframe id="frame-${p.id}" class="live-preview-frame"></iframe>`;
             let commentsHtml = p.comments.map(c => `<div class="comment-item"><b>${c.user}:</b> ${c.text}</div>`).join('');
             
             return `
@@ -388,7 +398,7 @@
             if(!val) return;
             let p = localHub.find(x => x.id === id);
             p.ratings.push(parseInt(val));
-            localStorage.setItem('wcd_v6_hub', JSON.stringify(localHub));
+            localStorage.setItem('wcd_v7_hub', JSON.stringify(localHub));
             renderHub(); renderTop();
         }
 
@@ -397,36 +407,33 @@
             if(!txt) return;
             let p = localHub.find(x => x.id === id);
             p.comments.push({user: 'زائر', text: txt});
-            localStorage.setItem('wcd_v6_hub', JSON.stringify(localHub));
+            localStorage.setItem('wcd_v7_hub', JSON.stringify(localHub));
             renderHub();
         }
 
-        // WhatsApp Group Chat Real-time Logic
+        // Chat UI System
         function sendChat() {
-            let user = document.getElementById('chatUser').value.trim() || 'عضو WCD';
+            let user = document.getElementById('chatUser').value.trim() || 'مستخدم WCD';
             let msg = document.getElementById('chatInput').value.trim();
             if(!msg) return;
             
-            let newMsg = { user, msg, time: new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'}) };
-            localChat.push(newMsg);
-            localStorage.setItem('wcd_v6_chat', JSON.stringify(localChat));
-            document.getElementById('chatInput').value = ''; 
-            renderChat();
+            if(window.sendGlobalChat) {
+                window.sendGlobalChat(user, msg);
+            }
+            document.getElementById('chatInput').value = '';
         }
 
-        function renderChat() {
+        function appendChatMsg(c) {
             const box = document.getElementById('chatBox');
-            let myName = document.getElementById('chatUser').value.trim() || 'عضو WCD';
-            box.innerHTML = localChat.map(c => `
-                <div class="chat-msg ${c.user === myName ? 'mine' : ''}">
-                    <div class="sender"><span>${c.user}</span> <small style="color:#aaa; font-weight:normal;">${c.time}</small></div>
-                    <div>${c.msg}</div>
-                </div>
-            `).join('');
+            let myName = document.getElementById('chatUser').value.trim() || 'مستخدم WCD';
+            let div = document.createElement('div');
+            div.className = `chat-msg ${c.user === myName ? 'mine' : ''}`;
+            div.innerHTML = `<div class="sender"><span>${c.user}</span> <small style="color:#aaa; font-weight:normal;">${c.time}</small></div><div>${c.msg}</div>`;
+            box.appendChild(div);
             box.scrollTop = box.scrollHeight;
         }
 
-        // Vault File Logic
+        // Vault Logic
         function saveVault() {
             let pass = document.getElementById('vaultPass').value;
             let text = document.getElementById('vaultText').value.trim();
@@ -437,13 +444,13 @@
                 let reader = new FileReader();
                 reader.onload = function(e) {
                     localVault.unshift({ pass, text, img: e.target.result });
-                    localStorage.setItem('wcd_v6_vault', JSON.stringify(localVault));
+                    localStorage.setItem('wcd_v7_vault', JSON.stringify(localVault));
                     clearVault(); renderVault();
                 }
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
                 localVault.unshift({ pass, text, img: null });
-                localStorage.setItem('wcd_v6_vault', JSON.stringify(localVault));
+                localStorage.setItem('wcd_v7_vault', JSON.stringify(localVault));
                 clearVault(); renderVault();
             }
         }
@@ -479,7 +486,7 @@
             let desc = document.getElementById('noteDesc').value.trim();
             if(!title || !desc) return alert('أدخلي البيانات!');
             localNotes.unshift({ title, desc });
-            localStorage.setItem('wcd_v6_notes', JSON.stringify(localNotes));
+            localStorage.setItem('wcd_v7_notes', JSON.stringify(localNotes));
             document.getElementById('noteTitle').value = ''; document.getElementById('noteDesc').value = '';
             renderNotes();
         }
@@ -498,7 +505,7 @@
             }, 1000);
         }
 
-        renderHub(); renderTop(); renderChat(); renderNotes(); renderVault();
+        renderHub(); renderTop(); renderNotes(); renderVault();
     </script>
 </body>
 </html>
