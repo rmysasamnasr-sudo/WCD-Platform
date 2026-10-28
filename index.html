@@ -3,33 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WCD Global Platform | منصة WCD العالمية</title>
+    <title>منصة WCD العالمية | WCD Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0f1115;
-            --bg-surface: #181b20;
-            --bg-card: #21252d;
-            --border-color: #2d333f;
-            --border-light: #3e4656;
-            --accent-main: #f8fafc;
-            --accent-muted: #94a3b8;
-            --accent-highlight: #e2e8f0;
-            --btn-bg: #2b303b;
-            --btn-hover: #3b4252;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --danger: #ef4444;
-            --success: #10b981;
+            --bg-primary: #120914;
+            --bg-surface: #1e1022;
+            --bg-card: #2a1730;
+            --border-color: #4a2856;
+            --border-light: #6b3a7d;
+            --accent-red: #e11d48;
+            --accent-lavender: #e9d5ff;
+            --lavender-bright: #c084fc;
+            --text-primary: #ffffff;
+            --text-secondary: #d8b4fe;
+            --btn-bg: #831843;
+            --btn-hover: #9f1239;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', 'Inter', sans-serif; }
         body { background-color: var(--bg-primary); color: var(--text-primary); min-height: 100vh; direction: rtl; display: flex; flex-direction: column; }
 
-        /* Top Navigation Bar */
+        /* Navigation Bar */
         .top-navbar {
             background: var(--bg-surface);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--accent-red);
             padding: 12px 24px;
             display: flex;
             justify-content: space-between;
@@ -41,331 +39,301 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-weight: 900;
-            font-size: 1.4rem;
-            letter-spacing: -0.5px;
-            color: var(--accent-main);
+            font-size: 1.5rem;
+            color: #ffffff;
         }
         .brand span {
-            background: #ffffff;
-            color: #000;
-            padding: 2px 8px;
+            background: var(--accent-red);
+            color: #ffffff;
+            padding: 2px 10px;
             border-radius: 6px;
             font-size: 0.9rem;
-            font-weight: 800;
         }
 
         .lang-selector {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            color: var(--text-primary);
+            color: var(--accent-lavender);
             padding: 6px 12px;
             border-radius: 8px;
             font-size: 0.85rem;
             outline: none;
             cursor: pointer;
-            transition: all 0.2s;
         }
-        .lang-selector:hover { border-color: var(--border-light); }
 
-        /* Main Layout */
+        /* Layout */
         .main-wrapper { display: flex; flex: 1; }
 
-        /* Sidebar Navigation */
         .sidebar {
-            width: 260px;
+            width: 270px;
             background: var(--bg-surface);
             border-left: 1px solid var(--border-color);
             padding: 20px 12px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
         .nav-link {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             padding: 12px 16px;
             color: var(--text-secondary);
             border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
             font-size: 0.95rem;
-            transition: all 0.2s ease;
-            text-decoration: none;
+            transition: all 0.2s;
         }
-        .nav-link:hover {
-            background: var(--btn-bg);
-            color: var(--text-primary);
-        }
+        .nav-link:hover { background: var(--border-color); color: #fff; }
         .nav-link.active {
-            background: #ffffff;
-            color: #0f1115;
+            background: linear-gradient(135deg, var(--accent-red), var(--lavender-bright));
+            color: #ffffff;
             font-weight: 700;
         }
 
-        /* Content Area */
-        .content-area {
-            flex: 1;
-            padding: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 100%;
-        }
+        .content-area { flex: 1; padding: 25px; max-width: 1100px; margin: 0 auto; width: 100%; }
 
         .page-header {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
-        .page-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); }
-        .page-header p { color: var(--text-secondary); font-size: 0.95rem; margin-top: 4px; }
+        .page-header h1 { font-size: 1.8rem; color: var(--accent-lavender); }
+        .page-header p { color: var(--text-secondary); font-size: 0.95rem; }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: var(--accent-lavender); }
         .form-control {
             width: 100%;
-            padding: 12px 14px;
+            padding: 10px 14px;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            color: var(--text-primary);
+            color: #ffffff;
             font-size: 0.95rem;
-            transition: border-color 0.2s;
         }
-        .form-control:focus { outline: none; border-color: var(--border-light); }
+        .form-control:focus { outline: none; border-color: var(--lavender-bright); }
 
         .btn-primary {
-            background: #ffffff;
-            color: #0f1115;
+            background: linear-gradient(135deg, var(--accent-red), #be123c);
+            color: #ffffff;
             border: none;
             padding: 12px 20px;
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
         }
-        .btn-primary:hover { background: var(--accent-highlight); }
+        .btn-primary:hover { opacity: 0.9; }
 
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 18px;
-            margin-top: 15px;
-        }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; margin-top: 15px; }
         .item-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 18px;
-            transition: border-color 0.2s;
+            position: relative;
         }
-        .item-card:hover { border-color: var(--border-light); }
-        .item-card h3 { font-size: 1.1rem; color: var(--text-primary); margin-bottom: 8px; }
-        .item-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; margin-bottom: 12px; }
-        .tag {
-            display: inline-block;
-            padding: 2px 8px;
-            background: var(--btn-bg);
-            color: var(--text-secondary);
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+        .item-card h3 { color: #ffffff; font-size: 1.15rem; margin-bottom: 6px; }
+        .item-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px; line-height: 1.4; }
+        .tag { display: inline-block; padding: 2px 8px; background: var(--accent-red); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; }
+        .sub-tag { display: inline-block; padding: 2px 8px; background: var(--border-color); color: var(--accent-lavender); border-radius: 6px; font-size: 0.75rem; margin-bottom: 8px; margin-right: 5px; }
 
-        /* Pomodoro Timer Specifics */
-        .timer-box {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .timer-display {
-            font-size: 5rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            color: #ffffff;
-            margin: 20px 0;
-            font-family: 'Inter', monospace;
-        }
-        .timer-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            max-width: 300px;
-            margin: 0 auto;
-        }
+        /* Comments & Ratings */
+        .rating-box { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-color); }
+        .rating-select { background: var(--bg-primary); color: #fff; border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 6px; }
+        .comments-section { margin-top: 10px; background: var(--bg-primary); padding: 10px; border-radius: 8px; font-size: 0.85rem; }
+        .comment-item { border-bottom: 1px dashed var(--border-color); padding: 4px 0; color: var(--text-secondary); }
+
+        /* Chat UI */
+        .chat-box { height: 350px; overflow-y: auto; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .chat-msg { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; max-width: 80%; }
+        .chat-msg .sender { font-weight: bold; color: var(--lavender-bright); font-size: 0.85rem; }
+
+        /* Timer */
+        .timer-display { font-size: 4.5rem; font-weight: 900; text-align: center; color: var(--accent-lavender); margin: 15px 0; font-family: 'Inter', monospace; }
 
         .section-view { display: none; }
         .section-view.active { display: block; }
 
         @media (max-width: 768px) {
             .main-wrapper { flex-direction: column; }
-            .sidebar { width: 100%; border-left: none; border-bottom: 1px solid var(--border-color); flex-direction: row; overflow-x: auto; padding: 10px; }
+            .sidebar { width: 100%; flex-direction: row; overflow-x: auto; padding: 8px; }
             .nav-link { white-space: nowrap; font-size: 0.85rem; padding: 8px 12px; }
-            .content-area { padding: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navbar -->
+    <!-- Header -->
     <nav class="top-navbar">
-        <div class="brand">
-            WCD <span>HUB</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <select class="lang-selector" id="langSelect" onchange="changeLanguage(this.value)">
-                <option value="ar">العربية (Arabic)</option>
-                <option value="en">English</option>
-                <option value="fr">Français (French)</option>
-                <option value="de">Deutsch (German)</option>
-                <option value="es">Español (Spanish)</option>
-                <option value="tr">Türkçe (Turkish)</option>
-                <option value="ru">Русский (Russian)</option>
-                <option value="zh">中文 (Chinese)</option>
-                <option value="ja">日本語 (Japanese)</option>
-                <option value="hi">हिन्दी (Hindi)</option>
-            </select>
-        </div>
+        <div class="brand">WCD <span>PLATFORM</span></div>
+        <select class="lang-selector" id="langSelect" onchange="changeLanguage(this.value)">
+            <option value="ar">العربية (Arabic)</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="es">Español</option>
+            <option value="tr">Türkçe</option>
+            <option value="ru">Русский</option>
+            <option value="zh">中文</option>
+            <option value="ja">日本語</option>
+            <option value="hi">हिन्दी</option>
+        </select>
     </nav>
 
-    <!-- Main Container Layout -->
     <div class="main-wrapper">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
-            <a class="nav-link active" onclick="switchSection('study', this)" id="nav-study">📚 مركز المذاكرة والتجميعات</a>
-            <a class="nav-link" onclick="switchSection('hub', this)" id="nav-hub">🌐 المنصة السحابية العالمية</a>
-            <a class="nav-link" onclick="switchSection('pomodoro', this)" id="nav-pomodoro">⏰ مؤقت التركيز البومودورو</a>
-            <a class="nav-link" onclick="switchSection('articles', this)" id="nav-articles">📖 قسم الدحيح والمقالات</a>
-            <a class="nav-link" onclick="switchSection('vault', this)" id="nav-vault">🔒 الخزنة السرية المحمية</a>
+            <a class="nav-link active" onclick="switchSection('hub', this)" id="nav-hub">🌐 مركز النشر العالمي</a>
+            <a class="nav-link" onclick="switchSection('top', this)" id="nav-top">🏆 لائحة أفضل البرامج</a>
+            <a class="nav-link" onclick="switchSection('chat', this)" id="nav-chat">💬 شات المنصة الجماعي</a>
+            <a class="nav-link" onclick="switchSection('study', this)" id="nav-study">📚 مركز المذاكرة والتجميعات</a>
+            <a class="nav-link" onclick="switchSection('pomo', this)" id="nav-pomo">⏰ مؤقت البومودورو</a>
+            <a class="nav-link" onclick="switchSection('vault', this)" id="nav-vault">🔒 الخزنة السرية المشفرة</a>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- Main Content -->
         <main class="content-area">
 
-            <!-- 1. Study Center Section -->
-            <section id="sec-study" class="section-view active">
+            <!-- 1. Global Cloud Hub -->
+            <section id="sec-hub" class="section-view active">
                 <div class="page-header">
-                    <h1 id="txt-study-title">مركز المذاكرة والتجميعات</h1>
-                    <p id="txt-study-sub">تطوير وتوثيق الأفكار الدراسية والتراكمات الخاصة بك بسهولة وحفظها.</p>
+                    <h1 id="txt-hub-title">مركز النشر العالمي</h1>
+                    <p id="txt-hub-sub">انشري واعرضي البرامج والألعاب والقصص مع رابط للتشغيل والتفاعل المباشر.</p>
                 </div>
                 <div class="card">
                     <div class="form-group">
-                        <label id="lbl-note-title">عنوان المادة / الملاحظة الدراسية:</label>
+                        <label>نوع النشر:</label>
+                        <select id="pubType" class="form-control" onchange="updateSubCats()">
+                            <option value="program">برنامج / تطبيق / لعبة</option>
+                            <option value="story">قصة / رواية</option>
+                            <option value="article">مقال علمي / دراسي</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>عنوان العمل:</label>
+                        <input type="text" id="pubTitle" class="form-control" placeholder="اسم البرنامج أو القصة...">
+                    </div>
+                    <div class="form-group">
+                        <label>التصنيف الفرعي:</label>
+                        <select id="pubSubCat" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>رابط البرنامج / اللعبة (اختياري - مثل game.html):</label>
+                        <input type="text" id="pubLink" class="form-control" placeholder="مثال: game.html أو رابط موقع مباشر">
+                    </div>
+                    <div class="form-group">
+                        <label>التفاصيل والوصف الشامل:</label>
+                        <textarea id="pubDesc" class="form-control" rows="3" placeholder="وصف للعمل..."></textarea>
+                    </div>
+                    <button class="btn-primary" onclick="publishContent()">نشر للجمهور أونلاين 🚀</button>
+                </div>
+
+                <div class="card">
+                    <h2>الأعمال والمنشورات العامة</h2>
+                    <div id="hubGrid" class="items-grid"></div>
+                </div>
+            </section>
+
+            <!-- 2. Leaderboard -->
+            <section id="sec-top" class="section-view">
+                <div class="page-header">
+                    <h1>🏆 لائحة أفضل البرامج والأعمال</h1>
+                    <p>أعلى البرامج والتطبيقات تقييماً وحصولاً على الإعجابات في المنصة.</p>
+                </div>
+                <div class="card">
+                    <div id="topGrid" class="items-grid"></div>
+                </div>
+            </section>
+
+            <!-- 3. Live Chat -->
+            <section id="sec-chat" class="section-view">
+                <div class="page-header">
+                    <h1>💬 شات المنصة الجماعي</h1>
+                    <p>تواصل مع كل أعضاء وزوار منصة WCD أونلاين فوراً.</p>
+                </div>
+                <div class="card">
+                    <div class="chat-box" id="chatBox"></div>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="chatUser" class="form-control" placeholder="اسمك..." style="width: 30%;">
+                        <input type="text" id="chatInput" class="form-control" placeholder="اكتب رسالتك هنا...">
+                        <button class="btn-primary" style="width: 20%;" onclick="sendChat()">إرسال 📩</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Study Center -->
+            <section id="sec-study" class="section-view">
+                <div class="page-header">
+                    <h1>📚 مركز المذاكرة والتجميعات</h1>
+                    <p>أرشيف وتوثيق دروسك وتراكمات المواد الدراسية بكل سهولة.</p>
+                </div>
+                <div class="card">
+                    <div class="form-group">
+                        <label>عنوان الدرس / المادة:</label>
                         <input type="text" id="noteTitle" class="form-control" placeholder="...">
                     </div>
                     <div class="form-group">
-                        <label id="lbl-note-desc">التفاصيل والتراكمات والملاحظات:</label>
-                        <textarea id="noteDesc" class="form-control" rows="4" placeholder="..."></textarea>
+                        <label>الملخص والتراكمات:</label>
+                        <textarea id="noteDesc" class="form-control" rows="3" placeholder="..."></textarea>
                     </div>
-                    <button class="btn-primary" onclick="saveNote()" id="btn-save-note">حفظ في سجل المذاكرة</button>
+                    <button class="btn-primary" onclick="saveNote()">حفظ الملاحظة 📝</button>
                 </div>
                 <div class="card">
-                    <h3 style="margin-bottom: 12px; font-size: 1.1rem;" id="txt-study-archive">أرشيف المذاكرة الخاص بك</h3>
+                    <h2>أرشيف المذاكرة</h2>
                     <div id="notesGrid" class="items-grid"></div>
                 </div>
             </section>
 
-            <!-- 2. Global Cloud Hub Section -->
-            <section id="sec-hub" class="section-view">
+            <!-- 5. Pomodoro -->
+            <section id="sec-pomo" class="section-view">
                 <div class="page-header">
-                    <h1 id="txt-hub-title">المنصة السحابية العالمية للنشر</h1>
-                    <p id="txt-hub-sub">استعراض ونشر المشروعات والقصص والأدوات البرمجية عالمياً.</p>
+                    <h1>⏰ مؤقت التركيز البومودورو</h1>
+                    <p>جلسات مذاكرة مركزة لزيادة استيعاب المعلومات.</p>
                 </div>
-                <div class="card">
-                    <div class="form-group">
-                        <label id="lbl-pub-title">اسم العمل / المشروع:</label>
-                        <input type="text" id="pubTitle" class="form-control" placeholder="...">
-                    </div>
-                    <div class="form-group">
-                        <label id="lbl-pub-cat">التصنيف:</label>
-                        <select id="pubCategory" class="form-control">
-                            <option value="تطبيق / برمجة">تطبيق / برمجة</option>
-                            <option value="قصة / مقال">قصة / مقال علمي</option>
-                            <option value="أداة تعليمية">أداة تعليمية</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label id="lbl-pub-desc">الوصف الموجز:</label>
-                        <textarea id="pubDesc" class="form-control" rows="3" placeholder="..."></textarea>
-                    </div>
-                    <button class="btn-primary" onclick="publishItem()" id="btn-publish">نشر للجمهور فوراً 🚀</button>
-                </div>
-                <div class="card">
-                    <h3 style="margin-bottom: 12px; font-size: 1.1rem;" id="txt-hub-feed">تغذية المنصة والمشاريع العامة</h3>
-                    <div id="itemsGrid" class="items-grid"></div>
-                </div>
-            </section>
-
-            <!-- 3. Pomodoro Focus Section -->
-            <section id="sec-pomodoro" class="section-view">
-                <div class="page-header">
-                    <h1 id="txt-pomo-title">مؤقت التركيز العلمي (Pomodoro)</h1>
-                    <p id="txt-pomo-sub">نظام إدراك الوقت لزيادة الإنتاجية والتركيز العالي أثناء المذاكرة.</p>
-                </div>
-                <div class="card timer-box">
+                <div class="card" style="text-align: center;">
                     <div class="timer-display" id="timerDisplay">25:00</div>
-                    <div class="timer-actions">
-                        <button class="btn-primary" onclick="startTimer()" id="btn-pomo-start">ابدأ الجلسة</button>
-                        <button class="btn-primary" style="background: var(--btn-bg); color: #fff;" onclick="resetTimer()" id="btn-pomo-reset">إعادة ضبط</button>
+                    <div style="display: flex; gap: 10px; justify-content: center; max-width: 300px; margin: 0 auto;">
+                        <button class="btn-primary" onclick="startTimer()">ابدأ التركيز ⏱️</button>
+                        <button class="btn-primary" style="background: var(--btn-bg);" onclick="resetTimer()">إعادة ضبط 🔄</button>
                     </div>
                 </div>
             </section>
 
-            <!-- 4. Scientific Articles Section -->
-            <section id="sec-articles" class="section-view">
-                <div class="page-header">
-                    <h1 id="txt-art-title">قسم المقالات والتجميعات العلمية (الدحيح)</h1>
-                    <p id="txt-art-sub">المساحة المخصصة للقراءات المتقدمة وتبادل العلوم والتبسيط المعرفي.</p>
-                </div>
-                <div class="card">
-                    <div class="form-group">
-                        <label id="lbl-art-title">عنوان المقال العلمي:</label>
-                        <input type="text" id="artTitle" class="form-control" placeholder="...">
-                    </div>
-                    <div class="form-group">
-                        <label id="lbl-art-content">المحتوى الشامل للمقال:</label>
-                        <textarea id="artContent" class="form-control" rows="5" placeholder="..."></textarea>
-                    </div>
-                    <button class="btn-primary" onclick="saveArticle()" id="btn-art-save">حفظ المقال العلمي</button>
-                </div>
-                <div class="card">
-                    <h3 style="margin-bottom: 12px; font-size: 1.1rem;" id="txt-art-archive">الأرشيف المعرفي</h3>
-                    <div id="articlesGrid" class="items-grid"></div>
-                </div>
-            </section>
-
-            <!-- 5. Encrypted Vault Section -->
+            <!-- 6. Vault -->
             <section id="sec-vault" class="section-view">
                 <div class="page-header">
-                    <h1 id="txt-vault-title">الخزنة السرية المحمية</h1>
-                    <p id="txt-vault-sub">حفظ البيانات والملاحظات الخاصة بكلمة مرور مشفرة محلياً.</p>
+                    <h1>🔒 الخزنة السرية المشفرة</h1>
+                    <p>تأمين وحفظ الأفكار الخاصة والنصوص بكلمة مرور مشفرة.</p>
                 </div>
                 <div class="card">
                     <div class="form-group">
-                        <label id="lbl-vault-pass">كلمة السر للرمز المشفر:</label>
+                        <label>كلمة السر للفك:</label>
                         <input type="password" id="vaultPass" class="form-control" placeholder="••••••••">
                     </div>
                     <div class="form-group">
-                        <label id="lbl-vault-data">النص / الفكرة السرية:</label>
+                        <label>النص السري:</label>
                         <textarea id="vaultText" class="form-control" rows="3" placeholder="..."></textarea>
                     </div>
-                    <button class="btn-primary" onclick="saveVault()" id="btn-vault-save">تأمين وحفظ في الخزنة 🔒</button>
+                    <button class="btn-primary" onclick="saveVault()">حفظ في الخزنة 🔑</button>
                 </div>
                 <div class="card">
-                    <h3 style="margin-bottom: 12px; font-size: 1.1rem;" id="txt-vault-items">المحتويات المشفرة</h3>
+                    <h2>المحتويات المشفرة</h2>
                     <div id="vaultGrid" class="items-grid"></div>
                 </div>
             </section>
@@ -374,186 +342,226 @@
     </div>
 
     <script>
-        // Tab Navigation Switcher
-        function switchSection(secId, element) {
+        function switchSection(id, btn) {
             document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-            
-            document.getElementById('sec-' + secId).classList.add('active');
-            element.classList.add('active');
+            document.getElementById('sec-' + id).classList.add('active');
+            btn.classList.add('active');
         }
 
-        // Local Storage State Management
-        let localNotes = JSON.parse(localStorage.getItem('wcd_v2_notes') || '[]');
-        let localHub = JSON.parse(localStorage.getItem('wcd_v2_hub') || '[]');
-        let localArticles = JSON.parse(localStorage.getItem('wcd_v2_articles') || '[]');
-        let localVault = JSON.parse(localStorage.getItem('wcd_v2_vault') || '[]');
+        // Dynamic Sub-Categories
+        const subCategories = {
+            program: ['ألعاب أركيد وفضاء', 'أدوات ومساعدات دراسية', 'تطبيقات إنتاجية وتصميم', 'برامج عامة أخرى'],
+            story: ['روايات خيال علمي', 'قصص درامية وتعليمية', 'مغامرات وألغاز', 'قصص تاريخية'],
+            article: ['علوم وفيزياء وتراكمات', 'تكنولوجيا وبرمجة', 'طرق مذاكرة وتطوير ذات', 'مقالات عامة']
+        };
 
-        // Study Section Functions
+        function updateSubCats() {
+            const type = document.getElementById('pubType').value;
+            const subSelect = document.getElementById('pubSubCat');
+            subSelect.innerHTML = subCategories[type].map(c => `<option value="${c}">${c}</option>`).join('');
+        }
+        updateSubCats();
+
+        // Local Storage State
+        let localHub = JSON.parse(localStorage.getItem('wcd_v3_hub') || '[]');
+        let localChat = JSON.parse(localStorage.getItem('wcd_v3_chat') || '[]');
+        let localNotes = JSON.parse(localStorage.getItem('wcd_v3_notes') || '[]');
+        let localVault = JSON.parse(localStorage.getItem('wcd_v3_vault') || '[]');
+
+        // Publishing System
+        function publishContent() {
+            const title = document.getElementById('pubTitle').value.trim();
+            const type = document.getElementById('pubType').value;
+            const subCat = document.getElementById('pubSubCat').value;
+            const link = document.getElementById('pubLink').value.trim();
+            const desc = document.getElementById('pubDesc').value.trim();
+
+            if(!title || !desc) return alert('برجاء كتابة العنوان والوصف قبل النشر!');
+
+            const newPost = {
+                id: Date.now(),
+                title, type, subCat, link, desc,
+                ratings: [10],
+                comments: [],
+                date: new Date().toLocaleDateString('ar-EG')
+            };
+
+            localHub.unshift(newPost);
+            localStorage.setItem('wcd_v3_hub', JSON.stringify(localHub));
+            document.getElementById('pubTitle').value = '';
+            document.getElementById('pubLink').value = '';
+            document.getElementById('pubDesc').value = '';
+            renderHub();
+            renderTop();
+            alert('تم النشر بنجاح على منصة WCD! 🚀');
+        }
+
+        function renderHub() {
+            const grid = document.getElementById('hubGrid');
+            if(localHub.length === 0) { grid.innerHTML = '<p style="color:var(--text-secondary);">لا توجد منشورات حتى الآن.</p>'; return; }
+            grid.innerHTML = localHub.map(p => renderPostCard(p)).join('');
+        }
+
+        function renderTop() {
+            const grid = document.getElementById('topGrid');
+            let sorted = [...localHub].sort((a,b) => getAvgRating(b) - getAvgRating(a));
+            grid.innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد تقييمات كافية.</p>' :
+            sorted.map(p => renderPostCard(p)).join('');
+        }
+
+        function getAvgRating(p) {
+            let sum = p.ratings.reduce((a,b) => a+b, 0);
+            return (sum / p.ratings.length).toFixed(1);
+        }
+
+        function renderPostCard(p) {
+            let avg = getAvgRating(p);
+            let linkBtn = p.link ? `<a href="${p.link}" target="_blank" class="btn-primary" style="display:inline-block; text-align:center; text-decoration:none; margin-bottom:10px; padding:6px 12px; font-size:0.85rem;">تشغيل / تجربة البرنامج 🎮</a>` : '';
+            
+            let commentsHtml = p.comments.map(c => `<div class="comment-item"><b>${c.user}:</b> ${c.text}</div>`).join('');
+
+            return `
+                <div class="item-card">
+                    <span class="tag">${p.type === 'program' ? 'برنامج' : p.type === 'story' ? 'قصة' : 'مقال'}</span>
+                    <span class="sub-tag">${p.subCat}</span>
+                    <h3>${p.title}</h3>
+                    <p>${p.desc}</p>
+                    ${linkBtn}
+                    <div class="rating-box">
+                        <span>التقييم: <b style="color:var(--lavender-bright);">${avg} / 10 ⭐</b></span>
+                        <select class="rating-select" onchange="ratePost(${p.id}, this.value)">
+                            <option value="">قيم من 10</option>
+                            ${[10,9,8,7,6,5,4,3,2,1].map(n => `<option value="${n}">${n}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="comments-section">
+                        <div style="margin-bottom:6px; font-weight:bold; color:var(--accent-lavender);">التعليقات:</div>
+                        <div id="comments-${p.id}">${commentsHtml || '<small style="color:#aaa;">لا تعليقات بعد</small>'}</div>
+                        <div style="display:flex; gap:5px; margin-top:8px;">
+                            <input type="text" id="cinput-${p.id}" class="form-control" style="padding:4px; font-size:0.8rem;" placeholder="أضف تعليقك...">
+                            <button class="btn-primary" style="padding:4px 8px; font-size:0.8rem; width:auto;" onclick="addComment(${p.id})">تعليق</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function ratePost(id, val) {
+            if(!val) return;
+            let p = localHub.find(x => x.id === id);
+            if(p) {
+                p.ratings.push(parseInt(val));
+                localStorage.setItem('wcd_v3_hub', JSON.stringify(localHub));
+                renderHub();
+                renderTop();
+            }
+        }
+
+        function addComment(id) {
+            let input = document.getElementById(`cinput-${id}`);
+            let text = input.value.trim();
+            if(!text) return;
+            let p = localHub.find(x => x.id === id);
+            if(p) {
+                p.comments.push({ user: 'زائر WCD', text });
+                localStorage.setItem('wcd_v3_hub', JSON.stringify(localHub));
+                renderHub();
+            }
+        }
+
+        // Chat System
+        function sendChat() {
+            let user = document.getElementById('chatUser').value.trim() || 'دحيح WCD';
+            let msg = document.getElementById('chatInput').value.trim();
+            if(!msg) return;
+            localChat.push({ user, msg, time: new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'}) });
+            localStorage.setItem('wcd_v3_chat', JSON.stringify(localChat));
+            document.getElementById('chatInput').value = '';
+            renderChat();
+        }
+
+        function renderChat() {
+            const box = document.getElementById('chatBox');
+            box.innerHTML = localChat.map(c => `
+                <div class="chat-msg">
+                    <div class="sender">${c.user} <small style="color:#aaa; font-weight:normal;">(${c.time})</small></div>
+                    <div>${c.msg}</div>
+                </div>
+            `).join('');
+            box.scrollTop = box.scrollHeight;
+        }
+
+        // Study & Vault
         function saveNote() {
-            const title = document.getElementById('noteTitle').value.trim();
-            const desc = document.getElementById('noteDesc').value.trim();
-            if(!title || !desc) return alert('برجاء تعبئة كافة الحقول المطلوب تسجيلها.');
-
-            localNotes.unshift({ title, desc, date: new Date().toLocaleDateString('ar-EG') });
-            localStorage.setItem('wcd_v2_notes', JSON.stringify(localNotes));
+            let title = document.getElementById('noteTitle').value.trim();
+            let desc = document.getElementById('noteDesc').value.trim();
+            if(!title || !desc) return alert('أدخلي البيانات!');
+            localNotes.unshift({ title, desc });
+            localStorage.setItem('wcd_v3_notes', JSON.stringify(localNotes));
             document.getElementById('noteTitle').value = '';
             document.getElementById('noteDesc').value = '';
             renderNotes();
         }
 
         function renderNotes() {
-            const grid = document.getElementById('notesGrid');
-            grid.innerHTML = localNotes.length === 0 ? '<p style="color:var(--text-secondary); font-size:0.9rem;">لا توجد ملاحظات محفوظة حالياً.</p>' :
-            localNotes.map(n => `
-                <div class="item-card">
-                    <h3>${n.title}</h3>
-                    <p>${n.desc}</p>
-                    <small style="color:var(--text-secondary); font-size:0.75rem;">${n.date}</small>
-                </div>
+            document.getElementById('notesGrid').innerHTML = localNotes.map(n => `
+                <div class="item-card"><h3>${n.title}</h3><p>${n.desc}</p></div>
             `).join('');
         }
 
-        // Hub Functions
-        function publishItem() {
-            const title = document.getElementById('pubTitle').value.trim();
-            const category = document.getElementById('pubCategory').value;
-            const desc = document.getElementById('pubDesc').value.trim();
-            if(!title || !desc) return alert('برجاء كتابة عنوان وتفاصيل المشروع قبل النشر.');
-
-            localHub.unshift({ title, category, desc, date: new Date().toLocaleDateString('ar-EG') });
-            localStorage.setItem('wcd_v2_hub', JSON.stringify(localHub));
-            document.getElementById('pubTitle').value = '';
-            document.getElementById('pubDesc').value = '';
-            renderHub();
-            alert('تم نشر العنصر بنجاح على المنصة السحابية!');
-        }
-
-        function renderHub() {
-            const grid = document.getElementById('itemsGrid');
-            grid.innerHTML = localHub.length === 0 ? '<p style="color:var(--text-secondary); font-size:0.9rem;">لم يتم نشر أي عناصر بعد.</p>' :
-            localHub.map(h => `
-                <div class="item-card">
-                    <span class="tag">${h.category}</span>
-                    <h3>${h.title}</h3>
-                    <p>${h.desc}</p>
-                    <small style="color:var(--text-secondary); font-size:0.75rem;">${h.date}</small>
-                </div>
-            `).join('');
-        }
-
-        // Article Functions
-        function saveArticle() {
-            const title = document.getElementById('artTitle').value.trim();
-            const content = document.getElementById('artContent').value.trim();
-            if(!title || !content) return alert('الرجاء إدخال البيانات كاملة للمقال.');
-
-            localArticles.unshift({ title, content, date: new Date().toLocaleDateString('ar-EG') });
-            localStorage.setItem('wcd_v2_articles', JSON.stringify(localArticles));
-            document.getElementById('artTitle').value = '';
-            document.getElementById('artContent').value = '';
-            renderArticles();
-        }
-
-        function renderArticles() {
-            const grid = document.getElementById('articlesGrid');
-            grid.innerHTML = localArticles.length === 0 ? '<p style="color:var(--text-secondary); font-size:0.9rem;">لا توجد مقالات مسجلة.</p>' :
-            localArticles.map(a => `
-                <div class="item-card">
-                    <h3>${a.title}</h3>
-                    <p>${a.content}</p>
-                    <small style="color:var(--text-secondary); font-size:0.75rem;">${a.date}</small>
-                </div>
-            `).join('');
-        }
-
-        // Vault Functions
         function saveVault() {
-            const pass = document.getElementById('vaultPass').value;
-            const text = document.getElementById('vaultText').value.trim();
-            if(!pass || !text) return alert('الرجاء إدخال كلمة المرور والنص المراد تشفيره.');
-
+            let pass = document.getElementById('vaultPass').value;
+            let text = document.getElementById('vaultText').value.trim();
+            if(!pass || !text) return alert('أدخلي كلمة السر والنص!');
             localVault.unshift({ pass, text });
-            localStorage.setItem('wcd_v2_vault', JSON.stringify(localVault));
+            localStorage.setItem('wcd_v3_vault', JSON.stringify(localVault));
             document.getElementById('vaultPass').value = '';
             document.getElementById('vaultText').value = '';
             renderVault();
         }
 
         function renderVault() {
-            const grid = document.getElementById('vaultGrid');
-            grid.innerHTML = localVault.length === 0 ? '<p style="color:var(--text-secondary); font-size:0.9rem;">الخزنة السرية خالية.</p>' :
-            localVault.map((v, i) => `
+            document.getElementById('vaultGrid').innerHTML = localVault.map((v, i) => `
                 <div class="item-card">
                     <h3>بيان مشفر #${i+1}</h3>
-                    <p>🔒 يتطلب كلمة المرور الخاصة للفك</p>
-                    <button class="btn-primary" style="padding:6px 12px; font-size:0.8rem; width:auto;" onclick="decryptVault(${i})">إظهار البيانات</button>
-                    <p id="vault-data-${i}" style="margin-top:10px; color:#ffffff; display:none; font-weight:600;"></p>
+                    <button class="btn-primary" style="padding:4px 8px; font-size:0.8rem; width:auto;" onclick="decryptVault(${i})">فك التشفير 🔓</button>
+                    <p id="vdata-${i}" style="margin-top:8px; color:var(--lavender-bright); display:none;"></p>
                 </div>
             `).join('');
         }
 
         function decryptVault(i) {
-            const inputPass = prompt('أدخلي كلمة السر للفك:');
-            if(inputPass === localVault[i].pass) {
-                const el = document.getElementById(`vault-data-${i}`);
-                el.style.display = 'block';
-                el.textContent = localVault[i].text;
-            } else {
-                alert('كلمة المرور غير صحيحة!');
-            }
+            let p = prompt('أدخلي كلمة السر:');
+            if(p === localVault[i].pass) {
+                document.getElementById(`vdata-${i}`).style.display = 'block';
+                document.getElementById(`vdata-${i}`).textContent = localVault[i].text;
+            } else alert('كلمة السر خاطئة!');
         }
 
-        // Timer Functions
+        // Timer
         let timerInterval;
         function startTimer() {
-            let time = 25 * 60;
+            let t = 25 * 60;
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
-                let m = Math.floor(time / 60);
-                let s = time % 60;
-                document.getElementById('timerDisplay').textContent = 
-                    `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-                if(time > 0) time--;
-                else { clearInterval(timerInterval); alert('انتهت الجلسة التركيزية.'); }
+                let m = Math.floor(t / 60), s = t % 60;
+                document.getElementById('timerDisplay').textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+                if(t > 0) t--; else clearInterval(timerInterval);
             }, 1000);
         }
+        function resetTimer() { clearInterval(timerInterval); document.getElementById('timerDisplay').textContent = "25:00"; }
 
-        function resetTimer() {
-            clearInterval(timerInterval);
-            document.getElementById('timerDisplay').textContent = "25:00";
-        }
-
-        // 10 International Languages Translations Engine
-        const translations = {
-            ar: { dir: "rtl", navStudy: "📚 مركز المذاكرة والتجميعات", navHub: "🌐 المنصة السحابية العالمية", navPomo: "⏰ مؤقت التركيز البومودورو", navArt: "📖 قسم الدحيح والمقالات", navVault: "🔒 الخزنة السرية المحمية", studyTitle: "مركز المذاكرة والتجميعات", studySub: "تطوير وتوثيق الأفكار الدراسية والتراكمات الخاصة بك بسهولة وحفظها." },
-            en: { dir: "ltr", navStudy: "📚 Study & Notes Center", navHub: "🌐 Global Cloud Hub", navPomo: "⏰ Pomodoro Focus Timer", navArt: "📖 Scientific Articles", navVault: "🔒 Protected Vault", studyTitle: "Study & Notes Center", studySub: "Organize and archive your personal study progress efficiently." },
-            fr: { dir: "ltr", navStudy: "📚 Centre d'Études", navHub: "🌐 Hub Cloud Mondial", navPomo: "⏰ Minuteur Pomodoro", navArt: "📖 Articles Scientifiques", navVault: "🔒 Coffre-fort Sécurisé", studyTitle: "Centre d'Études", studySub: "Organisez et archivez efficacement vos progrès d'études." },
-            de: { dir: "ltr", navStudy: "📚 Lernzentrum", navHub: "🌐 Globale Cloud-Plattform", navPomo: "⏰ Pomodoro-Timer", navArt: "📖 Wissenschaftliche Artikel", navVault: "🔒 Geschützter Tresor", studyTitle: "Lernzentrum", studySub: "Organisieren und archivieren Sie Ihren Studienfortschritt." },
-            es: { dir: "ltr", navStudy: "📚 Centro de Estudio", navHub: "🌐 Plataforma Cloud Global", navPomo: "⏰ Temporizador Pomodoro", navArt: "📖 Artículos Científicos", navVault: "🔒 Bóveda Protegida", studyTitle: "Centro de Estudio", studySub: "Organiza y archiva tu progreso de estudio." },
-            tr: { dir: "ltr", navStudy: "📚 Çalışma Merkezi", navHub: "🌐 Küresel Bulut Platformu", navPomo: "⏰ Pomodoro Zamanlayıcı", navArt: "📖 Bilimsel Makaleler", navVault: "🔒 Korumalı Kasa", studyTitle: "Çalışma Merkezi", studySub: "Ders notlarınızı düzenleyin ve arşivleyin." },
-            ru: { dir: "ltr", navStudy: "📚 Учебный Центр", navHub: "🌐 Глобальная Облачная Платформа", navPomo: "⏰ Таймер Помодоро", navArt: "📖 Научные Статьи", navVault: "🔒 Защищенный Сейф", studyTitle: "Учебный Центр", studySub: "Организуйте и сохраняйте свой учебный прогресс." },
-            zh: { dir: "ltr", navStudy: "📚 学习与笔记中心", navHub: "🌐 全球云端平台", navPomo: "⏰ 番茄钟专注计时器", navArt: "📖 科学文章", navVault: "🔒 加密保险库", studyTitle: "学习与笔记中心", studySub: "高效组织并归档您的学习进度。" },
-            ja: { dir: "ltr", navStudy: "📚 学習・ノートセンター", navHub: "🌐 グローバルクラウド", navPomo: "⏰ ポモドーロタイマー", navArt: "📖 科学記事", navVault: "🔒 保護された金庫", studyTitle: "学習・ノートセンター", studySub: "学習の進捗状況を効率的に整理および保存します。" },
-            hi: { dir: "ltr", navStudy: "📚 अध्ययन केंद्र", navHub: "🌐 ग्लोबल क्लाउड प्लेटफॉर्म", navPomo: "⏰ पोमोडोरो टाइमर", navArt: "📖 वैज्ञानिक लेख", navVault: "🔒 सुरक्षित तिजोरी", studyTitle: "अध्ययन केंद्र", studySub: "अपनी अध्ययन प्रगति को कुशलता से व्यवस्थित और संग्रहीत करें।" }
-        };
-
+        // Multi-language
         function changeLanguage(langKey) {
-            const lang = translations[langKey] || translations['ar'];
-            document.getElementById('htmlTag').setAttribute('dir', lang.dir);
-            document.getElementById('nav-study').innerHTML = lang.navStudy;
-            document.getElementById('nav-hub').innerHTML = lang.navHub;
-            document.getElementById('nav-pomodoro').innerHTML = lang.navPomo;
-            document.getElementById('nav-articles').innerHTML = lang.navArt;
-            document.getElementById('nav-vault').innerHTML = lang.navVault;
-            document.getElementById('txt-study-title').textContent = lang.studyTitle;
-            document.getElementById('txt-study-sub').textContent = lang.studySub;
+            document.getElementById('htmlTag').setAttribute('dir', langKey === 'ar' ? 'rtl' : 'ltr');
         }
 
-        // Initialize Renderings
-        renderNotes();
+        // Init
         renderHub();
-        renderArticles();
+        renderTop();
+        renderChat();
+        renderNotes();
         renderVault();
     </script>
 </body>
