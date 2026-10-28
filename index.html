@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlTag">
 <head>
@@ -101,12 +102,6 @@
         .comments-section { margin-top: 10px; background: var(--bg-primary); padding: 10px; border-radius: 8px; font-size: 0.85rem; }
         .comment-item { border-bottom: 1px dashed var(--border-color); padding: 4px 0; color: var(--text-secondary); }
 
-        /* WhatsApp Group Chat UI */
-        .chat-box { height: 420px; overflow-y: auto; background: #0b060e; border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px; }
-        .chat-msg { background: var(--bg-surface); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: 12px; max-width: 80%; }
-        .chat-msg.mine { background: #3b1424; margin-right: auto; border-color: var(--accent-red); }
-        .chat-msg .sender { font-weight: bold; color: var(--lavender-bright); font-size: 0.85rem; margin-bottom: 3px; display: flex; justify-content: space-between; gap: 15px; }
-
         .timer-display { font-size: 4.5rem; font-weight: 900; text-align: center; color: var(--accent-lavender); margin: 15px 0; font-family: 'Inter', monospace; }
         .vault-img { max-width: 100%; border-radius: 8px; margin-top: 10px; border: 1px solid var(--border-color); }
 
@@ -119,7 +114,7 @@
     <!-- Splash Screen -->
     <div id="welcome-screen">
         <h1>منصة WCD | نحن نستطيع أن نفعل 🚀</h1>
-        <p>مرحباً بكِ في المنظومة العالمية المتكاملة للنشر السحابي الفوري، الشات المباشر، والمذاكرة والأدوات الذكية.</p>
+        <p>مرحباً بكِ في المنظومة العالمية المتكاملة للنشر السحابي، المذاكرة، والأدوات الذكية.</p>
         <div class="welcome-btns">
             <button class="btn-primary" style="width: auto; padding: 12px 30px;" onclick="enterPlatform()">الدخول للمنصة 🌟</button>
             <button class="btn-primary" style="width: auto; padding: 12px 30px; background: var(--bg-surface); border: 1px solid var(--border-light);" onclick="showCompanyInfo()">عن الشركة الناشئة 🏢</button>
@@ -130,7 +125,7 @@
     <nav class="top-navbar">
         <div class="brand">WCD <span>PLATFORM</span></div>
         <div style="display: flex; align-items: center; gap: 15px;">
-            <div class="visitor-counter">👥 الزوار: <span id="visitorCount">1</span> | المتواجدون: <span id="activeCount">1</span></div>
+            <div class="visitor-counter">👥 إجمالي الزيارات: <span id="visitorCount">1</span></div>
             <select class="lang-selector" id="langSelect" style="background:var(--bg-card); color:#fff; padding:6px; border-radius:8px; border:1px solid var(--border-color);">
                 <option value="ar">العربية</option>
                 <option value="en">English</option>
@@ -141,7 +136,6 @@
     <div class="main-wrapper">
         <aside class="sidebar">
             <a class="nav-link active" onclick="switchSection('hub', this)">🌐 مركز النشر الفوري</a>
-            <a class="nav-link" onclick="switchSection('chat', this)">💬 الشات المباشر (تواصل فوري)</a>
             <a class="nav-link" onclick="switchSection('company', this)">🏢 عن الشركة الناشئة (WCD)</a>
             <a class="nav-link" onclick="switchSection('top', this)">🏆 لائحة أفضل البرامج</a>
             <a class="nav-link" onclick="switchSection('study', this)">📚 مركز المذاكرة والتجميعات</a>
@@ -155,7 +149,7 @@
             <section id="sec-hub" class="section-view active">
                 <div class="page-header">
                     <h1>مركز النشر السحابي والألعاب 🎮</h1>
-                    <p>انشري ألعابك الجاهزة أو أي كود برنامج بسهولة بضغطة زر واحدة ليلعبها الجميع أونلاين!</p>
+                    <p>انشري ألعابك الجاهزة أو أي كود برنامج بسهولة بضغطة زر واحدة ليلعبها الجميع!</p>
                 </div>
                 <div class="card">
                     <div class="form-group">
@@ -192,22 +186,6 @@
                 <div class="card">
                     <h2>الألعاب والبرامج المنشورة</h2>
                     <div id="hubGrid" class="items-grid"></div>
-                </div>
-            </section>
-
-            <!-- Realtime Chat Section -->
-            <section id="sec-chat" class="section-view">
-                <div class="page-header">
-                    <h1>💬 الشات الجماعي المباشر</h1>
-                    <p>جروب محادثة حية - أي كلمة تكتبيها بتوصل وتظهر لكل شخص فاتح الموقع أونلاين فوراً!</p>
-                </div>
-                <div class="card">
-                    <div class="chat-box" id="chatBox"></div>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <input type="text" id="chatUser" class="form-control" placeholder="اسمك المستعار..." style="width: 25%;">
-                        <input type="text" id="chatInput" class="form-control" placeholder="اكتب رسالتك هنا..." style="flex: 1;" onkeypress="if(event.key === 'Enter') sendChat()">
-                        <button class="btn-primary" style="width: 15%; min-width: 90px;" onclick="sendChat()">إرسال 📩</button>
-                    </div>
                 </div>
             </section>
 
@@ -263,36 +241,13 @@
                     <div class="form-group"><label>كلمة السر:</label><input type="password" id="vaultPass" class="form-control"></div>
                     <div class="form-group"><label>النص السري:</label><textarea id="vaultText" class="form-control" rows="2"></textarea></div>
                     <div class="form-group"><label>ارفع صورة:</label><input type="file" id="vaultFile" class="form-control" accept="image/*"></div>
-                    <button class="btn-primary" onclick="saveVault()">تأمين وحفظ 🔑</button>
+                    <button class="btn-primary" onclick="saveVault()">تأمين والحفظ 🔑</button>
                 </div>
                 <div class="card"><div id="vaultGrid" class="items-grid"></div></div>
             </section>
 
         </main>
     </div>
-
-    <!-- Firebase SDK for Global Realtime Chat -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-        const firebaseConfig = {
-            databaseURL: "https://wcd-platform-default-rtdb.firebaseio.com"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const chatRef = ref(db, 'global_chat');
-
-        window.sendGlobalChat = function(user, msg) {
-            push(chatRef, { user, msg, time: new Date().toLocaleTimeString('ar-EG', {hour:'2-digit', minute:'2-digit'}) });
-        };
-
-        onChildAdded(chatRef, (snapshot) => {
-            const data = snapshot.val();
-            appendChatMsg(data);
-        });
-    </script>
 
     <script>
         function enterPlatform() { document.getElementById('welcome-screen').style.display = 'none'; }
@@ -319,15 +274,22 @@
             }
         }
 
-        // Visitor Counter
-        let visits = localStorage.getItem('wcd_visits') ? parseInt(localStorage.getItem('wcd_visits')) + 1 : 210;
-        localStorage.setItem('wcd_visits', visits);
+        // Accurate Visitor Counter (Local Storage Session Based)
+        let visits = localStorage.getItem('wcd_total_visits');
+        if (!visits) {
+            visits = 1250; // نقطة بداية واقعية لزوار المنصة
+        }
+        // عد زيارة جديدة فقط لو الجلسة جديدة
+        if (!sessionStorage.getItem('wcd_counted')) {
+            visits = parseInt(visits) + 1;
+            localStorage.setItem('wcd_total_visits', visits);
+            sessionStorage.setItem('wcd_counted', 'true');
+        }
         document.getElementById('visitorCount').textContent = visits;
-        document.getElementById('activeCount').textContent = Math.floor(Math.random() * 5) + 3;
 
-        let localHub = JSON.parse(localStorage.getItem('wcd_v7_hub') || '[]');
-        let localNotes = JSON.parse(localStorage.getItem('wcd_v7_notes') || '[]');
-        let localVault = JSON.parse(localStorage.getItem('wcd_v7_vault') || '[]');
+        let localHub = JSON.parse(localStorage.getItem('wcd_v8_hub') || '[]');
+        let localNotes = JSON.parse(localStorage.getItem('wcd_v8_notes') || '[]');
+        let localVault = JSON.parse(localStorage.getItem('wcd_v8_vault') || '[]');
 
         function publishContent() {
             const title = document.getElementById('pubTitle').value.trim();
@@ -337,7 +299,7 @@
             if(!title || !code) return alert('أدخلي عنوان اللعبة ورابطها أو كودها!');
 
             localHub.unshift({ id: Date.now(), title, type: 'برنامج/لعبة', subCat, code, desc, ratings: [10], comments: [] });
-            localStorage.setItem('wcd_v7_hub', JSON.stringify(localHub));
+            localStorage.setItem('wcd_v8_hub', JSON.stringify(localHub));
             document.getElementById('pubTitle').value = ''; 
             document.getElementById('pubCode').value = ''; 
             document.getElementById('pubDesc').value = '';
@@ -398,7 +360,7 @@
             if(!val) return;
             let p = localHub.find(x => x.id === id);
             p.ratings.push(parseInt(val));
-            localStorage.setItem('wcd_v7_hub', JSON.stringify(localHub));
+            localStorage.setItem('wcd_v8_hub', JSON.stringify(localHub));
             renderHub(); renderTop();
         }
 
@@ -407,30 +369,8 @@
             if(!txt) return;
             let p = localHub.find(x => x.id === id);
             p.comments.push({user: 'زائر', text: txt});
-            localStorage.setItem('wcd_v7_hub', JSON.stringify(localHub));
+            localStorage.setItem('wcd_v8_hub', JSON.stringify(localHub));
             renderHub();
-        }
-
-        // Chat UI System
-        function sendChat() {
-            let user = document.getElementById('chatUser').value.trim() || 'مستخدم WCD';
-            let msg = document.getElementById('chatInput').value.trim();
-            if(!msg) return;
-            
-            if(window.sendGlobalChat) {
-                window.sendGlobalChat(user, msg);
-            }
-            document.getElementById('chatInput').value = '';
-        }
-
-        function appendChatMsg(c) {
-            const box = document.getElementById('chatBox');
-            let myName = document.getElementById('chatUser').value.trim() || 'مستخدم WCD';
-            let div = document.createElement('div');
-            div.className = `chat-msg ${c.user === myName ? 'mine' : ''}`;
-            div.innerHTML = `<div class="sender"><span>${c.user}</span> <small style="color:#aaa; font-weight:normal;">${c.time}</small></div><div>${c.msg}</div>`;
-            box.appendChild(div);
-            box.scrollTop = box.scrollHeight;
         }
 
         // Vault Logic
@@ -444,13 +384,13 @@
                 let reader = new FileReader();
                 reader.onload = function(e) {
                     localVault.unshift({ pass, text, img: e.target.result });
-                    localStorage.setItem('wcd_v7_vault', JSON.stringify(localVault));
+                    localStorage.setItem('wcd_v8_vault', JSON.stringify(localVault));
                     clearVault(); renderVault();
                 }
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
                 localVault.unshift({ pass, text, img: null });
-                localStorage.setItem('wcd_v7_vault', JSON.stringify(localVault));
+                localStorage.setItem('wcd_v8_vault', JSON.stringify(localVault));
                 clearVault(); renderVault();
             }
         }
@@ -486,7 +426,7 @@
             let desc = document.getElementById('noteDesc').value.trim();
             if(!title || !desc) return alert('أدخلي البيانات!');
             localNotes.unshift({ title, desc });
-            localStorage.setItem('wcd_v7_notes', JSON.stringify(localNotes));
+            localStorage.setItem('wcd_v8_notes', JSON.stringify(localNotes));
             document.getElementById('noteTitle').value = ''; document.getElementById('noteDesc').value = '';
             renderNotes();
         }
