@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">WCD Platform | المنصة العالمية</title>
+    <title id="page-title">WCD Platform | منصة WCD</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -107,7 +107,6 @@
         #fullscreen-topbar { background: #1e1022; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent-red); }
         #fullscreen-iframe { flex: 1; width: 100%; border: none; background: #000; }
 
-        /* Floating Add Button (+) */
         .fab-btn {
             position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: var(--accent-red);
             color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;
@@ -117,8 +116,8 @@
 
         .rating-box { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color); font-size: 0.85rem; }
         .rating-select { background: var(--bg-primary); color: #fff; border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 6px; }
-        .comments-list { margin-top: 10px; background: var(--bg-primary); padding: 10px; border-radius: 8px; font-size: 0.85rem; max-height: 120px; overflow-y: auto; }
-        .comment-item { border-bottom: 1px dashed var(--border-color); padding: 5px 0; color: var(--text-secondary); }
+        .comments-list { margin-top: 10px; background: var(--bg-primary); padding: 10px; border-radius: 8px; font-size: 0.85rem; max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+        .comment-item { border-bottom: 1px dashed var(--border-color); padding: 6px 0; color: var(--text-secondary); }
         .poster-img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); }
     </style>
 </head>
@@ -160,7 +159,7 @@
         <section id="sec-home" class="section-view active">
             <div class="page-header">
                 <div>
-                    <h1 id="home-title">أهلاً بك في منصة WCD العالمية 🚀</h1>
+                    <h1 id="home-title">أهلاً بك في منصة WCD | شركة ناشئة 🚀</h1>
                     <p id="home-sub">اختر القسم الذي تريد استكشافه أو استخدامه:</p>
                 </div>
             </div>
@@ -183,7 +182,7 @@
                 <div class="dash-card" onclick="switchSection('about')">
                     <span class="icon">🏢</span>
                     <h3 id="card-about-t">عن الشركة الناشئة</h3>
-                    <p id="card-about-d">تعرف على رسالتنا ورؤيتنا العالمية.</p>
+                    <p id="card-about-d">تعرف على رسالتنا ورؤيتنا.</p>
                 </div>
                 <div class="dash-card" onclick="switchSection('feedback')">
                     <span class="icon">💬</span>
@@ -198,7 +197,7 @@
             <div class="page-header">
                 <div>
                     <h1 id="h-vault">نظام الخزن الرقمية المشفرة</h1>
-                    <p id="p-vault">أنشئ خزنة برقم تسلسلي فريد، أو ابحث عن أي خزنة برقمها وكلمتها السرية!</p>
+                    <p id="p-vault">أنشئ خزنة برقم تسلسلي فريد، أو ابحث عن أي خزنة برقمها وكلمتها السرية من أي جهاز!</p>
                 </div>
                 <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
             </div>
@@ -208,7 +207,6 @@
                 <div class="form-group"><label id="l-vpass">كلمة السر (إجباري):</label><input type="password" id="vaultPass" class="form-control" placeholder="أدخل كلمة سر الحماية..."></div>
                 <div class="form-group"><label id="l-vtext">النص أو البيان السري:</label><textarea id="vaultText" class="form-control" rows="2" placeholder="اكتب أسرارك أو نصوصك..."></textarea></div>
                 
-                <!-- Voice Recording Section -->
                 <div class="form-group">
                     <label id="l-vvoice">تسجيل صوتي (فويس):</label>
                     <div style="display:flex; gap:10px; margin-bottom:8px;">
@@ -219,7 +217,7 @@
                 </div>
 
                 <div class="form-group"><label id="l-vfile">أو رفع صورة أو ملف:</label><input type="file" id="vaultFile" class="form-control" accept="image/*"></div>
-                <button class="btn-primary" onclick="createVault()" id="btn-cre-vault">توليد رقم تسلسلي وحفظ الخزنة 🔑</button>
+                <button class="btn-primary" onclick="createVault()" id="btn-cre-vault">توليد رقم تسلسلي وحفظ الخزنة سحابياً 🔑</button>
             </div>
 
             <div class="card">
@@ -238,7 +236,7 @@
             </div>
         </section>
 
-        <!-- 2. STORIES & ARTICLES SECTION -->
+        <!-- 2. STORIES SECTION -->
         <section id="sec-stories" class="section-view">
             <div class="page-header">
                 <div>
@@ -253,7 +251,7 @@
             <div class="fab-btn" onclick="openStoryModal()" title="إضافة مؤلّف جديد">+</div>
         </section>
 
-        <!-- 3. PROGRAMS & GAMES SECTION -->
+        <!-- 3. PROGRAMS SECTION -->
         <section id="sec-programs" class="section-view">
             <div class="page-header">
                 <div>
@@ -281,7 +279,7 @@
         <section id="sec-about" class="section-view">
             <div class="page-header">
                 <div>
-                    <h1 id="h-about">عن الشركة الناشئة WCD</h1>
+                    <h1 id="h-about">عن شركة WCD الناشئة</h1>
                     <p id="p-about">نحن نستطيع أن نفعل - المنظومة العالمية المبتكرة.</p>
                 </div>
                 <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
@@ -289,7 +287,7 @@
             <div class="card">
                 <h3 style="color:var(--lavender-bright); margin-bottom:10px;" id="h-about-t">رؤيتنا ورسالتنا</h3>
                 <p style="line-height:1.7; color:var(--text-secondary);" id="p-about-d">
-                    شركة WCD الناشئة (نحن نستطيع أن نفعل) هي منصة تقنية عالمية متكاملة تهدف إلى دمج الابتكار البرمجي، الإبداع الأدبي في القصص والمؤلفات، والتخزين الرقمي المشفر الذكي في مكان واحد لخدمة ملايين المستخدمين حول العالم.
+                    شركة WCD الناشئة (نحن نستطيع أن نفعل) هي منصة تقنية متكاملة تهدف إلى دمج الابتكار البرمجي، الإبداع الأدبي في القصص والمؤلفات، والتخزين الرقمي المشفر الذكي في مكان واحد لخدمة المستخدمين بكل سهولة واحترافية.
                 </p>
             </div>
         </section>
@@ -299,7 +297,7 @@
             <div class="page-header">
                 <div>
                     <h1 id="h-feed">تعليقات وآراء الزوار</h1>
-                    <p id="p-feed">شاركنا رأيك أو انطباعك عن المنصة وسيظهر فوراً للجميع.</p>
+                    <p id="p-feed">شاركنا رأيك أو انطباعك عن المنصة وسيظهر فوراً للجميع في كل أنحاء العالم.</p>
                 </div>
                 <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
             </div>
@@ -315,7 +313,7 @@
 
     </div>
 
-    <!-- Wattpad-free Add Story Modal -->
+    <!-- Add Story Modal -->
     <div id="storyModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:9999; display:none; align-items:center; justify-content:center; padding:20px;">
         <div class="card" style="width:100%; max-width:500px; background:var(--bg-surface);">
             <h2 id="modal-st-title">إضافة مؤلّف جديد (قصة / مقال) 📖</h2>
@@ -330,6 +328,42 @@
         </div>
     </div>
 
+    <!-- Firebase SDK for Realtime Cloud Sync -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            databaseURL: "https://wcd-platform-default-rtdb.firebaseio.com"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // --- GLOBAL CLOUD SYNC ---
+        window.cloudSave = function(path, data, callback) {
+            set(ref(db, path), data).then(() => {
+                if(callback) callback();
+            });
+        };
+
+        window.cloudPush = function(path, data, callback) {
+            push(ref(db, path), data).then(() => {
+                if(callback) callback();
+            });
+        };
+
+        window.cloudListen = function(path, callback) {
+            onValue(ref(db, path), (snapshot) => {
+                const val = snapshot.val();
+                callback(val);
+            });
+        };
+
+        // Initialize App Data Listeners after Firebase loads
+        initCloudSync();
+    </script>
+
     <script>
         function switchSection(id) {
             document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
@@ -337,7 +371,6 @@
             window.scrollTo(0,0);
         }
 
-        // --- VOICE RECORDING LOGIC ---
         let mediaRecorder;
         let audioChunks = [];
         let recordedAudioBase64 = null;
@@ -363,9 +396,9 @@
                 mediaRecorder.start();
                 document.getElementById('btn-start-rec').disabled = true;
                 document.getElementById('btn-stop-rec').disabled = false;
-                alert('جاري تسجيل الصوت الآن... تحدث بوضوح ثم اضغط إيقاف.');
+                alert('جاري تسجيل الصوت الآن...');
             } catch (err) {
-                alert('عذراً، لم نتمكن من الوصول للميكروفون. تأكد من السماح للمتصفح بذلك.');
+                alert('عذراً، لم نتمكن من الوصول للميكروفون.');
             }
         }
 
@@ -378,11 +411,31 @@
             }
         }
 
-        // --- STATE & LOCALSTORAGE ---
-        let vaults = JSON.parse(localStorage.getItem('wcd_v12_vaults') || '[]');
-        let stories = JSON.parse(localStorage.getItem('wcd_v12_stories') || '[]');
-        let programs = JSON.parse(localStorage.getItem('wcd_v12_progs') || '[]');
-        let feedbacks = JSON.parse(localStorage.getItem('wcd_v12_feeds') || '[]');
+        let vaults = [];
+        let stories = [];
+        let programs = [];
+        let feedbacks = [];
+
+        function initCloudSync() {
+            if(window.cloudListen) {
+                window.cloudListen('vaults', (data) => {
+                    vaults = data ? Object.values(data) : [];
+                    renderVaults();
+                });
+                window.cloudListen('stories', (data) => {
+                    stories = data ? Object.values(data) : [];
+                    renderStories();
+                });
+                window.cloudListen('programs', (data) => {
+                    programs = data ? Object.values(data) : [];
+                    renderPrograms();
+                });
+                window.cloudListen('feedbacks', (data) => {
+                    feedbacks = data ? Object.values(data) : [];
+                    renderFeedbacks();
+                });
+            }
+        }
 
         // --- VAULT LOGIC ---
         function createVault() {
@@ -393,7 +446,7 @@
             if(!pass) return alert('كلمة السر إجبارية لحماية الخزنة!');
             if(!text && !recordedAudioBase64 && fileInput.files.length === 0) return alert('أدخل نص أو سجل فويس أو ارفع صورة!');
 
-            let vaultId = vaults.length > 0 ? vaults[vaults.length - 1].vaultId + 1 : 101;
+            let vaultId = vaults.length > 0 ? Math.max(...vaults.map(v => v.vaultId)) + 1 : 101;
 
             if(fileInput.files.length > 0) {
                 let reader = new FileReader();
@@ -409,10 +462,11 @@
         }
 
         function saveVaultData(vaultId, pass, text, media, mediaType) {
-            vaults.push({ vaultId, pass, text, media, mediaType, date: new Date().toLocaleDateString() });
-            localStorage.setItem('wcd_v12_vaults', JSON.stringify(vaults));
-            alert(`تم إنشاء الخزنة بنجاح! 🎉\nرقمك التسلسلي هو: #${vaultId}\nاحفظه مع كلمة السر.`);
-            clearVaultForm(); renderVaults();
+            let newVault = { vaultId, pass, text, media, mediaType, date: new Date().toLocaleDateString() };
+            window.cloudPush('vaults', newVault, () => {
+                alert(`تم إنشاء الخزنة سحابياً بنجاح! 🎉\nرقمك التسلسلي هو: #${vaultId}\nيمكنك فتحها من أي جهاز في العالم بهذا الرقم والباسورد.`);
+                clearVaultForm();
+            });
         }
 
         function clearVaultForm() {
@@ -424,7 +478,9 @@
         }
 
         function renderVaults() {
-            document.getElementById('vaultGrid').innerHTML = vaults.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد خزن مسجلة.</p>' :
+            let grid = document.getElementById('vaultGrid');
+            if(!grid) return;
+            grid.innerHTML = vaults.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد خزن مسجلة.</p>' :
             vaults.map(v => `
                 <div class="item-card">
                     <span class="tag">الخزنة رقم #${v.vaultId}</span>
@@ -476,21 +532,28 @@
             let content = document.getElementById('storyContent').value.trim();
 
             if(!title || !content) return alert('أدخل العنوان والمحتوى!');
-            stories.push({ id: Date.now(), title, author, poster, content, ratings: [10] });
-            localStorage.setItem('wcd_v12_stories', JSON.stringify(stories));
-            closeStoryModal(); renderStories(); alert('تم نشر المؤلف بنجاح 📖');
+            let newStory = { id: Date.now(), title, author, poster, content, ratings: { admin: 10 } };
+            window.cloudPush('stories', newStory, () => {
+                closeStoryModal();
+                alert('تم نشر المؤلف سحابياً بنجاح 📖');
+            });
         }
 
         function renderStories() {
+            let grid = document.getElementById('storiesGrid');
+            if(!grid) return;
             let sorted = [...stories].sort((a,b) => {
-                let avgA = a.ratings.reduce((x,y)=>x+y,0)/a.ratings.length;
-                let avgB = b.ratings.reduce((x,y)=>x+y,0)/b.ratings.length;
-                return (avgB * Math.log(b.ratings.length + 1)) - (avgA * Math.log(a.ratings.length + 1));
+                let valsA = Object.values(a.ratings || {1:10});
+                let valsB = Object.values(b.ratings || {1:10});
+                let avgA = valsA.reduce((x,y)=>x+y,0)/valsA.length;
+                let avgB = valsB.reduce((x,y)=>x+y,0)/valsB.length;
+                return (avgB * Math.log(valsB.length + 1)) - (avgA * Math.log(valsA.length + 1));
             });
 
-            document.getElementById('storiesGrid').innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد مؤلفات منشورة بعد.</p>' :
+            grid.innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد مؤلفات منشورة بعد.</p>' :
             sorted.map(s => {
-                let avg = (s.ratings.reduce((x,y)=>x+y,0)/s.ratings.length).toFixed(1);
+                let vals = Object.values(s.ratings || {1:10});
+                let avg = (vals.reduce((x,y)=>x+y,0)/vals.length).toFixed(1);
                 return `
                     <div class="item-card">
                         <img src="${s.poster}" class="poster-img">
@@ -498,8 +561,8 @@
                         <h3>${s.title}</h3>
                         <p>${s.content.substring(0, 100)}...</p>
                         <div class="rating-box">
-                            <span>التقييم: <b>${avg} / 10 ⭐ (${s.ratings.length})</b></span>
-                            <select class="rating-select" onchange="rateStory(${s.id}, this.value)"><option value="">تقييم</option>${[10,9,8,7,6,5,4,3,2,1].map(n=>`<option value="${n}">${n}</option>`).join('')}</select>
+                            <span>التقييم: <b>${avg} / 10 ⭐ (${vals.length})</b></span>
+                            <select class="rating-select" onchange="rateStory('${s.id}', this.value)"><option value="">تقييم</option>${[10,9,8,7,6,5,4,3,2,1].map(n=>`<option value="${n}">${n}</option>`).join('')}</select>
                         </div>
                     </div>
                 `;
@@ -508,10 +571,12 @@
 
         function rateStory(id, val) {
             if(!val) return;
-            let s = stories.find(x => x.id === id);
-            s.ratings.push(parseInt(val));
-            localStorage.setItem('wcd_v12_stories', JSON.stringify(stories));
-            renderStories();
+            let s = stories.find(x => x.id == id);
+            if(s) {
+                if(!s.ratings) s.ratings = {};
+                s.ratings['u_' + Math.random()] = parseInt(val);
+                window.cloudSave('stories/' + Object.keys(stories).find(key => stories[key].id == id), s);
+            }
         }
 
         // --- PROGRAMS LOGIC ---
@@ -521,24 +586,30 @@
             let desc = document.getElementById('progDesc').value.trim();
             if(!title || !code) return alert('أدخل العنوان والكود أو الرابط!');
 
-            programs.push({ id: Date.now(), title, code, desc, ratings: [10] });
-            localStorage.setItem('wcd_v12_progs', JSON.stringify(programs));
-            document.getElementById('progTitle').value = '';
-            document.getElementById('progCode').value = '';
-            document.getElementById('progDesc').value = '';
-            renderPrograms(); alert('تم نشر البرنامج أو اللعبة بنجاح 🚀');
+            let newProg = { id: Date.now(), title, code, desc, ratings: { admin: 10 } };
+            window.cloudPush('programs', newProg, () => {
+                document.getElementById('progTitle').value = '';
+                document.getElementById('progCode').value = '';
+                document.getElementById('progDesc').value = '';
+                alert('تم نشر البرنامج أو اللعبة سحابياً بنجاح 🚀');
+            });
         }
 
         function renderPrograms() {
+            let grid = document.getElementById('programsGrid');
+            if(!grid) return;
             let sorted = [...programs].sort((a,b) => {
-                let avgA = a.ratings.reduce((x,y)=>x+y,0)/a.ratings.length;
-                let avgB = b.ratings.reduce((x,y)=>x+y,0)/b.ratings.length;
-                return (avgB * Math.log(b.ratings.length + 1)) - (avgA * Math.log(a.ratings.length + 1));
+                let valsA = Object.values(a.ratings || {1:10});
+                let valsB = Object.values(b.ratings || {1:10});
+                let avgA = valsA.reduce((x,y)=>x+y,0)/valsA.length;
+                let avgB = valsB.reduce((x,y)=>x+y,0)/valsB.length;
+                return (avgB * Math.log(valsB.length + 1)) - (avgA * Math.log(valsA.length + 1));
             });
 
-            document.getElementById('programsGrid').innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد برامج منشورة بعد.</p>' :
+            grid.innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد برامج منشورة بعد.</p>' :
             sorted.map(p => {
-                let avg = (p.ratings.reduce((x,y)=>x+y,0)/p.ratings.length).toFixed(1);
+                let vals = Object.values(p.ratings || {1:10});
+                let avg = (vals.reduce((x,y)=>x+y,0)/vals.length).toFixed(1);
                 return `
                     <div class="item-card">
                         <span class="tag">تطبيق / لعبة</span>
@@ -546,8 +617,8 @@
                         <p>${p.desc || ''}</p>
                         <button class="btn-primary" style="padding:8px; font-size:0.85rem;" onclick="launchFullscreen('${encodeURIComponent(p.code)}', '${p.title}')">تشغيل ملء الشاشة 🎮</button>
                         <div class="rating-box" style="margin-top:auto;">
-                            <span>التقييم: <b>${avg} / 10 ⭐ (${p.ratings.length})</b></span>
-                            <select class="rating-select" onchange="rateProg(${p.id}, this.value)"><option value="">تقييم</option>${[10,9,8,7,6,5,4,3,2,1].map(n=>`<option value="${n}">${n}</option>`).join('')}</select>
+                            <span>التقييم: <b>${avg} / 10 ⭐ (${vals.length})</b></span>
+                            <select class="rating-select" onchange="rateProg('${p.id}', this.value)"><option value="">تقييم</option>${[10,9,8,7,6,5,4,3,2,1].map(n=>`<option value="${n}">${n}</option>`).join('')}</select>
                         </div>
                     </div>
                 `;
@@ -556,10 +627,12 @@
 
         function rateProg(id, val) {
             if(!val) return;
-            let p = programs.find(x => x.id === id);
-            p.ratings.push(parseInt(val));
-            localStorage.setItem('wcd_v12_progs', JSON.stringify(programs));
-            renderPrograms();
+            let p = programs.find(x => x.id == id);
+            if(p) {
+                if(!p.ratings) p.ratings = {};
+                p.ratings['u_' + Math.random()] = parseInt(val);
+                window.cloudSave('programs/' + Object.keys(programs).find(key => programs[key].id == id), p);
+            }
         }
 
         function launchFullscreen(encodedCode, title) {
@@ -581,29 +654,85 @@
             let user = document.getElementById('feedUser').value.trim() || 'زائر WCD';
             let text = document.getElementById('feedText').value.trim();
             if(!text) return;
-            feedbacks.unshift({ user, text, time: new Date().toLocaleTimeString() });
-            localStorage.setItem('wcd_v12_feeds', JSON.stringify(feedbacks));
-            document.getElementById('feedText').value = '';
-            renderFeedbacks();
+            let newFeed = { user, text, time: new Date().toLocaleTimeString() };
+            window.cloudPush('feedbacks', newFeed, () => {
+                document.getElementById('feedText').value = '';
+            });
         }
 
         function renderFeedbacks() {
-            document.getElementById('feedbackList').innerHTML = feedbacks.length === 0 ? '<p style="color:var(--text-secondary);">لا تعليقات بعد.</p>' :
+            let list = document.getElementById('feedbackList');
+            if(!list) return;
+            list.innerHTML = feedbacks.length === 0 ? '<p style="color:var(--text-secondary);">لا تعليقات بعد.</p>' :
             feedbacks.map(f => `<div class="comment-item"><b>${f.user}</b> <small style="color:#aaa;">(${f.time})</small>: ${f.text}</div>`).join('');
         }
 
-        // --- 10 LANGUAGES ENGINE (FULL TRANSLATION) ---
+        // --- 10 LANGUAGES ENGINE (FULL COMPREHENSIVE TRANSLATION) ---
         const dictionary = {
-            ar: { dir: 'rtl', hTitle: 'أهلاً بك في منصة WCD العالمية 🚀', hSub: 'اختر القسم الذي تريد استكشافه أو استخدامه:', cvt: 'الخزن الرقمية المشفرة', cvd: 'أنشئ خزن برقم تسلسلي، ارفع نصوص وصور وفويس، وافتح أي خزنة بالعالم.', cst: 'قسم المؤلفات والقصص', csd: 'اقرأ وانشر القصص والمقالات، مع نظام تقييم وترتيب ذكي للأفضل.', cpt: 'البرامج والألعاب', cpd: 'شغل الألعاب وبرامج الـ AI بضغطة زر وتجربة ملء الشاشة الفورية.', cat: 'عن الشركة الناشئة', cad: 'تعرف على رسالتنا ورؤيتنا العالمية.', cft: 'تعليقات وآراء الزوار', cfd: 'شاركنا رأيك أو انطباعك ليظهر فوراً للجميع.', homeBtn: 'الرئيسية 🏠', close: 'خروج ✕' },
-            en: { dir: 'ltr', hTitle: 'Welcome to WCD Global Platform 🚀', hSub: 'Choose the section you want to explore or use:', cvt: 'Encrypted Digital Vaults', cvd: 'Create vaults with serial numbers, upload texts, images, and voice, and open any vault.', cst: 'Stories & Articles', csd: 'Read and publish stories and articles with smart rating & ranking.', cpt: 'Apps & Games', cpd: 'Run games and AI apps with instant full-screen experience.', cat: 'About Startup', cad: 'Learn about our mission and global vision.', cft: 'Visitor Feedback', cfd: 'Share your thoughts or feedback instantly.', homeBtn: 'Home 🏠', close: 'Close ✕' },
-            fr: { dir: 'ltr', hTitle: 'Bienvenue sur la plateforme WCD 🚀', hSub: 'Choisissez la section à explorer :', cvt: 'Coffres Numériques', cvd: 'Créez des coffres avec numéro de série, textes, images et voix.', cst: 'Histoires & Articles', csd: 'Lisez et publiez des histoires avec notation intelligente.', cpt: 'Applications & Jeux', cpd: 'Lancez des jeux et des applications IA en plein écran.', cat: 'À Propos', cad: 'Découvrez notre vision globale.', cft: 'Avis des Visiteurs', cfd: 'Partagez vos impressions instantanément.', homeBtn: 'Accueil 🏠', close: 'Fermer ✕' },
-            de: { dir: 'ltr', hTitle: 'Willkommen bei der WCD Plattform 🚀', hSub: 'Wählen Sie den gewünschten Bereich:', cvt: 'Digitale Tresore', cvd: 'Erstellen Sie Tresore mit Seriennummer, Texten, Bildern und Sprache.', cst: 'Geschichten & Artikel', csd: 'Lesen und veröffentlichen Sie mit intelligenter Bewertung.', cpt: 'Apps & Spiele', cpd: 'Starten Sie Spiele und KI-Apps im Vollbildmodus.', cat: 'Über Uns', cad: 'Erfahren Sie mehr über unsere Vision.', cft: 'Besucher-Feedback', cfd: 'Teilen Sie Ihre Gedanken sofort mit.', homeBtn: 'Startseite 🏠', close: 'Schließen ✕' },
-            es: { dir: 'ltr', hTitle: 'Bienvenido a la Plataforma WCD 🚀', hSub: 'Elige la sección que deseas explorar:', cvt: 'Bóvedas Digitales', cvd: 'Crea bóvedas con número de serie, textos, imágenes y voz.', cst: 'Historias y Artículos', csd: 'Lee y publica historias con calificación inteligente.', cpt: 'Aplicaciones y Juegos', cpd: 'Ejecuta juegos y apps de IA en pantalla completa.', cat: 'Sobre Nosotros', cad: 'Conoce nuestra visión global.', cft: 'Comentarios', cfd: 'Comparte tus opiniones al instante.', homeBtn: 'Inicio 🏠', close: 'Cerrar ✕' },
-            tr: { dir: 'ltr', hTitle: 'WCD Küresel Platformuna Hoş Geldiniz 🚀', hSub: 'Keşfetmek istediğiniz bölümü seçin:', cvt: 'Dijital Kasalar', cvd: 'Seri numaralı kasalar oluşturun, metin, resim ve ses yükleyin.', cst: 'Hikayeler ve Makaleler', csd: 'Akıllı derecelendirme ile hikayeler okuyun ve yayınlayın.', cpt: 'Uygulamalar ve Oyunlar', cpd: 'Tam ekran deneyimiyle oyunları ve AI uygulamalarını çalıştırın.', cat: 'Hakkımızda', cad: 'Küresel vizyonumuz hakkında bilgi edinin.', cft: 'Ziyaretçi Geri Bildirimi', cfd: 'Düşüncelerinizi anında paylaşın.', homeBtn: 'Ana Sayfa 🏠', close: 'Kapat ✕' },
-            ru: { dir: 'ltr', hTitle: 'Добро пожаловать на платформу WCD 🚀', hSub: 'Выберите раздел для изучения:', cvt: 'Цифровые Сейфы', cvd: 'Создавайте сейфы с серийным номером, текстом, фото и голосом.', cst: 'Истории и Статьи', csd: 'Читайте и публикуйте истории с умным рейтингом.', cpt: 'Приложения и Игры', cpd: 'Запускайте игры и ИИ-приложения на весь экран.', cat: 'О Нас', cad: 'Узнайте о нашей глобальной миссии.', cft: 'Отзывы Посетителей', cfd: 'Поделитесь своими впечатлениями мгновенно.', homeBtn: 'Главная 🏠', close: 'Закрыть ✕' },
-            zh: { dir: 'ltr', hTitle: '欢迎来到 WCD 全球平台 🚀', hSub: '选择您要探索或使用的部分：', cvt: '数字保险库', cvd: '创建带序列号的保险库，上传文本、图片和语音。', cst: '故事与文章', csd: '阅读并发布带有智能评分的故事。', cpt: '应用与游戏', cpd: '一键全屏体验游戏和AI应用。', cat: '关于我们', cad: '了解我们的全球愿景。', cft: '访客反馈', cfd: '立即分享您的想法。', homeBtn: '首页 🏠', close: '关闭 ✕' },
-            ja: { dir: 'ltr', hTitle: 'WCDグローバルプラットフォームへようこそ 🚀', hSub: '探索または使用するセクションを選択してください：', cvt: 'デジタル金庫', cvd: 'シリアル番号付きの金庫を作成し、テキスト、画像、音声を保存。', cst: 'ストーリーと記事', csd: 'スマート評価システムでストーリーを読んで公開。', cpt: 'アプリ＆ゲーム', cpd: '全画面体験でゲームやAIアプリを実行。', cat: '会社概要', cad: '私たちのグローバルビジョンについて知る。', cft: '訪問者のフィードバック', cfd: '感想を瞬時に共有。', homeBtn: 'ホーム 🏠', close: '閉じる ✕' },
-            hi: { dir: 'ltr', hTitle: 'WCD ग्लोबल प्लेटफ़ॉर्म में आपका स्वागत है 🚀', hSub: 'वह अनुभाग चुनें जिसे आप देखना चाहते हैं:', cvt: 'डिजिटल तिजोरी', cvd: 'सीरियल नंबर के साथ तिजोरी बनाएं, टेक्स्ट, चित्र और आवाज़ अपलोड करें।', cst: 'कहानियाँ और लेख', csd: 'स्मार्ट रेटिंग के साथ कहानियाँ पढ़ें और प्रकाशित करें।', cpt: 'ऐप्स और गेम्स', cpd: 'पूर्ण-स्क्रीन अनुभव के साथ गेम और AI ऐप्स चलाएं।', cat: 'हमारे बारे में', cad: 'हमारी वैश्विक दृष्टि के बारे में जानें।', cft: 'प्रतिक्रिया', cfd: 'तुरंत अपनी राय साझा करें।', homeBtn: 'होम 🏠', close: 'बंद करें ✕' }
+            ar: { 
+                dir: 'rtl', 
+                hTitle: 'أهلاً بك في منصة WCD | شركة ناشئة 🚀', 
+                hSub: 'اختر القسم الذي تريد استكشافه أو استخدامه:', 
+                cvt: 'الخزن الرقمية المشفرة', cvd: 'أنشئ خزن برقم تسلسلي، ارفع نصوص وصور وفويس، وافتح أي خزنة بالعالم من أي جهاز.', 
+                cst: 'قسم المؤلفات والقصص', csd: 'اقرأ وانشر القصص والمقالات، مع نظام تقييم وترتيب ذكي للأفضل.', 
+                cpt: 'البرامج والألعاب', cpd: 'شغل الألعاب وبرامج الـ AI بضغطة زر وتجربة ملء الشاشة الفورية.', 
+                cat: 'عن الشركة الناشئة', cad: 'تعرف على رسالتنا ورؤيتنا.', 
+                cft: 'تعليقات وآراء الزوار', cfd: 'شاركنا رأيك أو انطباعك ليظهر فوراً للجميع في كل أنحاء العالم.', 
+                homeBtn: 'الرئيسية 🏠', close: 'خروج ✕',
+                hv: 'نظام الخزن الرقمية المشفرة', pv: 'أنشئ خزنة برقم تسلسلي فريد، أو ابحث عن أي خزنة برقمها وكلمتها السرية من أي جهاز!',
+                hcv: 'إنشاء خزنة جديدة 🗝️', lvpass: 'كلمة السر (إجباري):', lvtext: 'النص أو البيان السري:', lvvoice: 'تسجيل صوتي (فويس):', lvfile: 'أو رفع صورة أو ملف:', bcv: 'توليد رقم تسلسلي وحفظ الخزنة سحابياً 🔑',
+                hsv: 'فتح خزنة برقمها التسلسلي 🔓', bov: 'فتح 🔓', hrv: 'سجل الخزن العامة على المنصة',
+                hs: 'قسم المؤلفات والقصص و المقالات', ps: 'استكشف المؤلفات مرتبة ذكياً حسب الأعلى تقيماً وأصواتاً.',
+                hp: 'مركز البرامج والألعاب العالمية', pp: 'شغل أي لعبة أو برنامج بضغطة زر وتجربة ملء الشاشة الفورية!',
+                hpp: 'نشر برنامج / لعبة جديدة ⚡', lpt: 'اسم البرنامج / اللعبة:', lpc: 'كود البرمجية (HTML/JS) أو رابط game.html:', lpd: 'وصف مختصر:', bpp: 'نشر البرنامج للجميع 🚀', hpl: 'البرامج والألعاب المنشورة',
+                ha: 'عن شركة WCD الناشئة', pa: 'نحن نستطيع أن نفعل - المنظومة العالمية المبتكرة.', hat: 'رؤيتنا ورسالتنا', pad: 'شركة WCD الناشئة (نحن نستطيع أن نفعل) هي منصة تقنية متكاملة تهدف إلى دمج الابتكار البرمجي، الإبداع الأدبي في القصص والمؤلفات، والتخزين الرقمي المشفر الذكي في مكان واحد لخدمة المستخدمين بكل سهولة واحترافية.',
+                hf: 'تعليقات وآراء الزوار', pf: 'شاركنا رأيك أو انطباعك عن المنصة وسيظهر فوراً للجميع في كل أنحاء العالم.', lfn: 'اسمك:', lft: 'تعليقك:', bfp: 'إرسال التعليق 💬',
+                mst: 'إضافة مؤلّف جديد (قصة / مقال) 📖', mlt: 'عنوان المؤلف:', mla: 'اسم المؤلف / الكاتب:', mlp: 'رابط بوستر الغلاف (صورة):', mlco: 'نص المؤلف (القصة أو المقال):', mbp: 'نشر المؤلف 🚀', mbc: 'إلغاء'
+            },
+            en: { 
+                dir: 'ltr', 
+                hTitle: 'Welcome to WCD Platform | Startup 🚀', 
+                hSub: 'Choose the section you want to explore or use:', 
+                cvt: 'Encrypted Digital Vaults', cvd: 'Create vaults with serial numbers, upload texts, images, and voice, and open from any device.', 
+                cst: 'Stories & Articles', csd: 'Read and publish stories and articles with smart rating & ranking.', 
+                cpt: 'Apps & Games', cpd: 'Run games and AI apps with instant full-screen experience.', 
+                cat: 'About Startup', cad: 'Learn about our mission and vision.', 
+                cft: 'Visitor Feedback', cfd: 'Share your thoughts or feedback instantly worldwide.', 
+                homeBtn: 'Home 🏠', close: 'Close ✕',
+                hv: 'Encrypted Digital Vault System', pv: 'Create a vault with a unique serial number or open any vault worldwide from any device!',
+                hcv: 'Create New Vault 🗝️', lvpass: 'Password (Required):', lvtext: 'Secret Text or Note:', lvvoice: 'Voice Recording:', lvfile: 'Or Upload Image/File:', bcv: 'Generate Serial & Save to Cloud 🔑',
+                hsv: 'Open Vault by Serial Number 🔓', bov: 'Open 🔓', hrv: 'Public Vaults Registry',
+                hs: 'Stories & Articles Section', ps: 'Explore smart-ranked stories and articles.',
+                hp: 'Global Apps & Games Hub', pp: 'Run any game or app with instant full-screen experience!',
+                hpp: 'Publish New App / Game ⚡', lpt: 'App / Game Title:', lpc: 'Code (HTML/JS) or Link:', lpd: 'Short Description:', bpp: 'Publish for Everyone 🚀', hpl: 'Published Apps & Games',
+                ha: 'About WCD Startup', pa: 'We Can Do It - Innovative Ecosystem.', hat: 'Our Vision & Mission', pad: 'WCD Startup is an integrated tech platform combining software innovation, literary creativity, and secure digital storage.',
+                hf: 'Visitor Feedback', pf: 'Share your thoughts instantly worldwide.', lfn: 'Your Name:', lft: 'Your Feedback:', bfp: 'Send Comment 💬',
+                mst: 'Add New Story / Article 📖', mlt: 'Title:', mla: 'Author Name:', mlp: 'Poster Image URL:', mlco: 'Content:', mbp: 'Publish 🚀', mbc: 'Cancel'
+            },
+            fr: { 
+                dir: 'ltr', hTitle: 'Bienvenue sur WCD | Startup 🚀', hSub: 'Choisissez la section :', 
+                cvt: 'Coffres Numériques', cvd: 'Créez des coffres avec numéro de série et ouvrez-les de n\'importe quel appareil.', 
+                cst: 'Histoires & Articles', csd: 'Lisez et publiez des histoires avec notation.', 
+                cpt: 'Applications & Jeux', cpd: 'Lancez des jeux et applications IA en plein écran.', 
+                cat: 'À Propos', cad: 'Découvrez notre vision.', 
+                cft: 'Avis des Visiteurs', cfd: 'Partagez vos avis instantanément.', homeBtn: 'Accueil 🏠', close: 'Fermer ✕',
+                hv: 'Coffres Numériques', pv: 'Créez un coffre ou ouvrez-le de n\'importe où !',
+                hcv: 'Créer un Coffre 🗝️', lvpass: 'Mot de passe :', lvtext: 'Texte secret :', lvvoice: 'Enregistrement vocal :', lvfile: 'Ou Fichier :', bcv: 'Sauvegarder 🔑',
+                hsv: 'Ouvrir par Numéro 🔓', bov: 'Ouvrir 🔓', hrv: 'Registre des Coffres',
+                hs: 'Histoires & Articles', ps: 'Explorez les histoires.',
+                hp: 'Applications & Jeux', pp: 'Exécutez des applications en plein écran !',
+                hpp: 'Publier un Jeu ⚡', lpt: 'Titre :', lpc: 'Code ou Lien :', lpd: 'Description :', bpp: 'Publier 🚀', hpl: 'Jeux Publiés',
+                ha: 'À Propos de WCD', pa: 'Notre vision.', hat: 'Notre Mission', pad: 'Plateforme technologique intégrée.',
+                hf: 'Avis', pf: 'Partagez vos avis.', lfn: 'Nom :', lft: 'Commentaire :', bfp: 'Envoyer 💬',
+                mst: 'Ajouter une Histoire 📖', mlt: 'Titre :', mla: 'Auteur :', mlp: 'Image URL :', mlco: 'Contenu :', mbp: 'Publier 🚀', mbc: 'Annuler'
+            },
+            de: { dir: 'ltr', hTitle: 'Willkommen bei WCD | Startup 🚀', hSub: 'Wählen Sie einen Bereich:', cvt: 'Digitale Tresore', cvd: 'Tresore erstellen und von jedem Gerät öffnen.', cst: 'Geschichten', csd: 'Geschichten lesen und veröffentlichen.', cpt: 'Apps & Spiele', cpd: 'Spiele im Vollbildmodus ausführen.', cat: 'Über Uns', cad: 'Unsere Vision.', cft: 'Feedback', cfd: 'Teilen Sie Ihr Feedback.', homeBtn: 'Startseite 🏠', close: 'Schließen ✕', hv: 'Tresore', pv: 'Tresor erstellen oder öffnen!', hcv: 'Tresor erstellen 🗝️', lvpass: 'Passwort:', lvtext: 'Text:', lvvoice: 'Sprachaufnahme:', lvfile: 'Datei:', bcv: 'Speichern 🔑', hsv: 'Öffnen 🔓', bov: 'Öffnen 🔓', hrv: 'Tresor-Register', hs: 'Geschichten', ps: 'Geschichten erkunden', hp: 'Apps & Spiele', pp: 'Spiele ausführen!', hpp: 'App veröffentlichen ⚡', lpt: 'Titel:', lpc: 'Code:', lpd: 'Beschreibung:', bpp: 'Veröffentlichen 🚀', hpl: 'Veröffentlicht', ha: 'Über WCD', pa: 'Unsere Vision.', hat: 'Mission', pad: 'Integrierte Plattform.', hf: 'Feedback', pf: 'Teilen Sie Feedback.', lfn: 'Name:', lft: 'Kommentar:', bfp: 'Senden 💬', mst: 'Geschichte hinzufügen 📖', mlt: 'Titel:', mla: 'Autor:', mlp: 'Bild URL:', mlco: 'Inhalt:', mbp: 'Veröffentlichen 🚀', mbc: 'Abbrechen' },
+            es: { dir: 'ltr', hTitle: 'Bienvenido a WCD | Startup 🚀', hSub: 'Elige una sección:', cvt: 'Bóvedas Digitales', cvd: 'Crea bóvedas y ábrelas desde cualquier dispositivo.', cst: 'Historias', csd: 'Lee y publica historias.', cpt: 'Apps y Juegos', cpd: 'Ejecuta juegos en pantalla completa.', cat: 'Sobre Nosotros', cad: 'Nuestra visión.', cft: 'Comentarios', cfd: 'Comparte tu opinión.', homeBtn: 'Inicio 🏠', close: 'Cerrar ✕', hv: 'Bóvedas', pv: '¡Crea o abre bóvedas!', hcv: 'Crear Bóveda 🗝️', lvpass: 'Contraseña:', lvtext: 'Texto:', lvvoice: 'Voz:', lvfile: 'Archivo:', bcv: 'Guardar 🔑', hsv: 'Abrir 🔓', bov: 'Abrir 🔓', hrv: 'Registro', hs: 'Historias', ps: 'Explora historias', hp: 'Juegos', pp: '¡Ejecuta juegos!', hpp: 'Publicar ⚡', lpt: 'Título:', lpc: 'Código:', lpd: 'Descripción:', bpp: 'Publicar 🚀', hpl: 'Publicados', ha: 'Sobre WCD', pa: 'Nuestra visión.', hat: 'Misión', pad: 'Plataforma integrada.', hf: 'Comentarios', pf: 'Comparte.', lfn: 'Nombre:', lft: 'Comentario:', bfp: 'Enviar 💬', mst: 'Añadir Historia 📖', mlt: 'Título:', mla: 'Autor:', mlp: 'Imagen URL:', mlco: 'Contenido:', mbp: 'Publicar 🚀', mbc: 'Cancelar' },
+            tr: { dir: 'ltr', hTitle: 'WCD Platformuna Hoş Geldiniz | Girişim 🚀', hSub: 'Bir bölüm seçin:', cvt: 'Dijital Kasalar', cvd: 'Kasalar oluşturun ve her cihazdan açın.', cst: 'Hikayeler', csd: 'Hikayeler okuyun ve yayınlayın.', cpt: 'Uygulamalar ve Oyunlar', cpd: 'Tam ekranda çalıştırın.', cat: 'Hakkımızda', cad: 'Vizyonumuz.', cft: 'Geri Bildirim', cfd: 'Görüşlerinizi paylaşın.', homeBtn: 'Ana Sayfa 🏠', close: 'Kapat ✕', hv: 'Kasalar', pv: 'Kasa oluşturun veya açın!', hcv: 'Kasa Oluştur 🗝️', lvpass: 'Şifre:', lvtext: 'Metin:', lvvoice: 'Ses:', lvfile: 'Dosya:', bcv: 'Kaydet 🔑', hsv: 'Aç 🔓', bov: 'Aç 🔓', hrv: 'Kasa Listesi', hs: 'Hikayeler', ps: 'Hikayeleri keşfet', hp: 'Oyunlar', pp: 'Uygulamaları çalıştır!', hpp: 'Yayınla ⚡', lpt: 'Başlık:', lpc: 'Kod:', lpd: 'Açıklama:', bpp: 'Yayınla 🚀', hpl: 'Yayınlananlar', ha: 'WCD Hakkında', pa: 'Vizyonumuz.', hat: 'Misyon', pad: 'Entegre platform.', hf: 'Geri Bildirim', pf: 'Görüş paylaşın.', lfn: 'İsim:', lft: 'Yorum:', bfp: 'Gönder 💬', mst: 'Hikaye Ekle 📖', mlt: 'Başlık:', mla: 'Yazar:', mlp: 'Resim URL:', mlco: 'İçerik:', mbp: 'Yayınla 🚀', mbc: 'İptal' },
+            ru: { dir: 'ltr', hTitle: 'Добро пожаловать в WCD | Стартап 🚀', hSub: 'Выберите раздел:', cvt: 'Цифровые Сейфы', cvd: 'Создавайте сейфы и открывайте их с любого устройства.', cst: 'Истории', csd: 'Читайте и публикуйте истории.', cpt: 'Приложения и Игры', cpd: 'Запускайте приложения на весь экран.', cat: 'О Нас', cad: 'Наша миссия.', cft: 'Отзывы', cfd: 'Поделитесь мнением.', homeBtn: 'Главная 🏠', close: 'Закрыть ✕', hv: 'Сейфы', pv: 'Создавайте сейфы!', hcv: 'Создать Сейф 🗝️', lvpass: 'Пароль:', lvtext: 'Текст:', lvvoice: 'Голос:', lvfile: 'Файл:', bcv: 'Сохранить 🔑', hsv: 'Открыть 🔓', bov: 'Открыть 🔓', hrv: 'Список', hs: 'Истории', ps: 'Истории', hp: 'Игры', pp: 'Игры', hpp: 'Опубликовать ⚡', lpt: 'Название:', lpc: 'Код:', lpd: 'Описание:', bpp: 'Опубликовать 🚀', hpl: 'Опубликовано', ha: 'О WCD', pa: 'Наша миссия.', hat: 'Миссия', pad: 'Платформа.', hf: 'Отзывы', pf: 'Отзывы.', lfn: 'Имя:', lft: 'Комментарий:', bfp: 'Отправить 💬', mst: 'Добавить 📖', mlt: 'Название:', mla: 'Автор:', mlp: 'Картинка URL:', mlco: 'Текст:', mbp: 'Публиковать 🚀', mbc: 'Отмена' },
+            zh: { dir: 'ltr', hTitle: '欢迎来到 WCD | 初创公司 🚀', hSub: '选择一个部分：', cvt: '数字保险库', cvd: '创建保险库并从任何设备打开。', cst: '故事与文章', csd: '阅读并发布故事。', cpt: '应用与游戏', cpd: '全屏运行应用。', cat: '关于我们', cad: '我们的愿景。', cft: '反馈', cfd: '分享您的反馈。', homeBtn: '首页 🏠', close: '关闭 ✕', hv: '保险库', pv: '创建或打开保险库！', hcv: '创建保险库 🗝️', lvpass: '密码：', lvtext: '文本：', lvvoice: '语音：', lvfile: '文件：', bcv: '保存 🔑', hsv: '打开 🔓', bov: '打开 🔓', hrv: '列表', hs: '故事', ps: '探索故事', hp: '应用与游戏', pp: '运行应用！', hpp: '发布 ⚡', lpt: '标题：', lpc: '代码：', lpd: '描述：', bpp: '发布 🚀', hpl: '已发布', ha: '关于WCD', pa: '愿景。', hat: '使命', pad: '集成平台。', hf: '反馈', pf: '分享反馈。', lfn: '姓名：', lft: '评论：', bfp: '发送 💬', mst: '添加故事 📖', mlt: '标题：', mla: '作者：', mlp: '图片 URL：', mlco: '内容：', mbp: '发布 🚀', mbc: '取消' },
+            ja: { dir: 'ltr', hTitle: 'WCD | スタートアップ 🚀', hSub: 'セクションを選択:', cvt: 'デジタル金庫', cvd: '金庫を作成し、どのデバイスからも開く。', cst: 'ストーリー', csd: 'ストーリーを読む。', cpt: 'アプリ＆ゲーム', cpd: '全画面で実行。', cat: '会社概要', cad: 'ビジョン。', cft: 'フィードバック', cfd: '意見を共有。', homeBtn: 'ホーム 🏠', close: '閉じる ✕', hv: '金庫', pv: '金庫を作成！', hcv: '金庫を作成 🗝️', lvpass: 'パスワード:', lvtext: 'テキスト:', lvvoice: '音声:', lvfile: 'ファイル:', bcv: '保存 🔑', hsv: '開く 🔓', bov: '開く 🔓', hrv: 'リスト', hs: 'ストーリー', ps: '探索', hp: 'ゲーム', pp: 'ゲームを実行！', hpp: '公開 ⚡', lpt: 'タイトル:', lpc: 'コード:', lpd: '説明:', bpp: '公開 🚀', hpl: '公開済み', ha: 'WCDについて', pa: 'ビジョン。', hat: 'ミッション', pad: 'プラットフォーム。', hf: 'フィードバック', pf: '意見を共有。', lfn: '名前:', lft: 'コメント:', bfp: '送信 💬', mst: 'ストーリー追加 📖', mlt: 'タイトル:', mla: '作者:', mlp: '画像 URL:', mlco: '内容:', mbp: '公開 🚀', mbc: 'キャンセル' },
+            hi: { dir: 'ltr', hTitle: 'WCD | स्टार्टअप 🚀', hSub: 'अनुभाग चुनें:', cvt: 'डिजिटल तिजोरी', cvd: 'तिजोरी बनाएं और किसी भी डिवाइस से खोलें।', cst: 'कहानियाँ', csd: 'कहानियाँ पढ़ें।', cpt: 'ऐप्स और गेम्स', cpd: 'पूर्ण स्क्रीन में चलाएं।', cat: 'हमारे बारे में', cad: 'हमारा दृष्टिकोण।', cft: 'प्रतिक्रिया', cfd: 'अपनी प्रतिक्रिया साझा करें।', homeBtn: 'होम 🏠', close: 'बंद करें ✕', hv: 'तिजोरी', pv: 'तिजोरी बनाएं!', hcv: 'तिजोरी बनाएं 🗝️', lvpass: 'पासवर्ड:', lvtext: 'टेक्स्ट:', lvvoice: 'आवाज़:', lvfile: 'फ़ाइल:', bcv: 'सहेजें 🔑', hsv: 'खोलें 🔓', bov: 'खोलें 🔓', hrv: 'सूची', hs: 'कहानियाँ', ps: 'कहानियाँ देखें', hp: 'गेम्स', pp: 'गेम्स चलाएं!', hpp: 'प्रकाशित करें ⚡', lpt: 'शीर्षक:', lpc: 'कोड:', lpd: 'विवरण:', bpp: 'प्रकाशित करें 🚀', hpl: 'प्रकाशित', ha: 'WCD के बारे में', pa: 'दृष्टिकोण।', hat: 'मिशन', pad: 'प्लेटफॉर्म।', hf: 'प्रतिक्रिया', pf: 'प्रतिक्रिया साझा करें।', lfn: 'नाम:', lft: 'टिप्पणी:', bfp: 'भेजें 💬', mst: 'कथा जोड़ें 📖', mlt: 'शीर्षक:', mla: 'लेखक:', mlp: 'छवि URL:', mlco: 'सामग्री:', mbp: 'प्रकाशित करें 🚀', mbc: 'रद्द करें' }
         };
 
         function changeLanguage(lang) {
@@ -623,13 +752,56 @@
             document.getElementById('card-feed-d').textContent = l.cfd;
             document.querySelectorAll('.home-btn').forEach(b => b.textContent = l.homeBtn);
             document.getElementById('txt-close').textContent = l.close;
-        }
 
-        // Init
-        renderVaults();
-        renderStories();
-        renderPrograms();
-        renderFeedbacks();
+            // Vault Section
+            document.getElementById('h-vault').textContent = l.hv;
+            document.getElementById('p-vault').textContent = l.pv;
+            document.getElementById('h-cre-vault').textContent = l.hcv;
+            document.getElementById('l-vpass').textContent = l.lvpass;
+            document.getElementById('l-vtext').textContent = l.lvtext;
+            document.getElementById('l-vvoice').textContent = l.lvvoice;
+            document.getElementById('l-vfile').textContent = l.lvfile;
+            document.getElementById('btn-cre-vault').textContent = l.bcv;
+            document.getElementById('h-search-vault').textContent = l.hsv;
+            document.getElementById('btn-open-vault').textContent = l.bov;
+            document.getElementById('h-reg-vault').textContent = l.hrv;
+
+            // Stories Section
+            document.getElementById('h-stories').textContent = l.hs;
+            document.getElementById('p-stories').textContent = l.ps;
+
+            // Programs Section
+            document.getElementById('h-progs').textContent = l.hp;
+            document.getElementById('p-progs').textContent = l.pp;
+            document.getElementById('h-pub-prog').textContent = l.hpp;
+            document.getElementById('l-ptitle').textContent = l.lpt;
+            document.getElementById('l-pcode').textContent = l.lpc;
+            document.getElementById('l-pdesc').textContent = l.lpd;
+            document.getElementById('btn-pub-prog').textContent = l.bpp;
+            document.getElementById('h-prog-list').textContent = l.hpl;
+
+            // About Section
+            document.getElementById('h-about').textContent = l.ha;
+            document.getElementById('p-about').textContent = l.pa;
+            document.getElementById('h-about-t').textContent = l.hat;
+            document.getElementById('p-about-d').textContent = l.pad;
+
+            // Feedback Section
+            document.getElementById('h-feed').textContent = l.hf;
+            document.getElementById('p-feed').textContent = l.pf;
+            document.getElementById('l-fname').textContent = l.lfn;
+            document.getElementById('l-ftext').textContent = l.lft;
+            document.getElementById('btn-feed-post').textContent = l.bfp;
+
+            // Modal
+            document.getElementById('modal-st-title').textContent = l.mst;
+            document.getElementById('modal-l-title').textContent = l.mlt;
+            document.getElementById('modal-l-author').textContent = l.mla;
+            document.getElementById('modal-l-poster').textContent = l.mlp;
+            document.getElementById('modal-l-content').textContent = l.mlco;
+            document.getElementById('modal-btn-pub').textContent = l.mbp;
+            document.getElementById('modal-btn-close').textContent = l.mbc;
+        }
     </script>
 </body>
 </html>
