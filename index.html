@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WCD Platform | المنصة العالمية</title>
+    <title id="page-title">WCD Platform | المنصة العالمية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,23 +35,48 @@
             top: 0;
             z-index: 100;
         }
-        .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.5rem; color: #ffffff; }
+        .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.5rem; color: #ffffff; cursor: pointer; }
         .brand span { background: var(--accent-red); color: #ffffff; padding: 2px 10px; border-radius: 6px; font-size: 0.9rem; }
         
-        .nav-links-bar { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-        .nav-item { color: var(--text-secondary); cursor: pointer; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; background: none; border: none; }
-        .nav-item:hover, .nav-item.active { color: var(--accent-lavender); text-shadow: 0 0 10px var(--lavender-bright); }
+        .nav-controls { display: flex; gap: 15px; align-items: center; }
+        .home-btn { background: var(--border-color); color: #fff; border: none; padding: 6px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .home-btn:hover { background: var(--accent-red); }
+        .lang-select { background: var(--bg-card); color: #fff; border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 8px; cursor: pointer; }
 
-        .lang-select { background: var(--bg-card); color: #fff; border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 8px; cursor: pointer; }
-
-        /* Main Content Layout */
+        /* Main Container */
         .content-container { flex: 1; padding: 30px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .section-view { display: none; }
         .section-view.active { display: block; }
 
-        .page-header { margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; }
-        .page-header h1 { font-size: 2rem; color: var(--accent-lavender); }
-        .page-header p { color: var(--text-secondary); font-size: 1rem; }
+        /* Dashboard Home Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .dash-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        .dash-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-red);
+            background: var(--bg-surface);
+        }
+        .dash-card .icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .dash-card h3 { font-size: 1.3rem; color: var(--accent-lavender); margin-bottom: 8px; }
+        .dash-card p { color: var(--text-secondary); font-size: 0.9rem; }
+
+        .page-header { margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+        .page-header h1 { font-size: 1.8rem; color: var(--accent-lavender); }
+        .page-header p { color: var(--text-secondary); font-size: 0.9rem; }
 
         .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 22px; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
 
@@ -78,15 +103,11 @@
         .sub-tag { display: inline-block; padding: 2px 8px; background: var(--border-color); color: var(--accent-lavender); border-radius: 6px; font-size: 0.75rem; }
 
         /* Fullscreen App Overlay */
-        #fullscreen-overlay {
-            position: fixed; inset: 0; background: #000; z-index: 9999; display: none; flex-direction: column;
-        }
-        #fullscreen-topbar {
-            background: #1e1022; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent-red);
-        }
+        #fullscreen-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: none; flex-direction: column; }
+        #fullscreen-topbar { background: #1e1022; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent-red); }
         #fullscreen-iframe { flex: 1; width: 100%; border: none; background: #000; }
 
-        /* Floating Wattpad Add Button (+) */
+        /* Floating Add Button (+) */
         .fab-btn {
             position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: var(--accent-red);
             color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem;
@@ -96,10 +117,8 @@
 
         .rating-box { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color); font-size: 0.85rem; }
         .rating-select { background: var(--bg-primary); color: #fff; border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 6px; }
-
         .comments-list { margin-top: 10px; background: var(--bg-primary); padding: 10px; border-radius: 8px; font-size: 0.85rem; max-height: 120px; overflow-y: auto; }
         .comment-item { border-bottom: 1px dashed var(--border-color); padding: 5px 0; color: var(--text-secondary); }
-
         .poster-img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); }
     </style>
 </head>
@@ -109,93 +128,141 @@
     <div id="fullscreen-overlay">
         <div id="fullscreen-topbar">
             <span id="fullscreen-title" style="font-weight:bold; font-size:1.1rem; color:var(--accent-lavender);">تشغيل التطبيق</span>
-            <button class="btn-primary" style="width:auto; padding:6px 16px; background:var(--accent-red);" onclick="closeFullscreen()">خروج ✕ (السهم)</button>
+            <button class="btn-primary" style="width:auto; padding:6px 16px; background:var(--accent-red);" onclick="closeFullscreen()" id="txt-close">خروج ✕</button>
         </div>
         <iframe id="fullscreen-iframe"></iframe>
     </div>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Bar -->
     <nav class="top-navbar">
-        <div class="brand">WCD <span>PLATFORM</span></div>
-        <div class="nav-links-bar">
-            <button class="nav-item active" onclick="switchSection('vault', this)" id="nav-vault">🔒 الخزن الرقمية</button>
-            <button class="nav-item" onclick="switchSection('stories', this)" id="nav-stories">📖 المؤلفات (واتباد)</button>
-            <button class="nav-item" onclick="switchSection('programs', this)" id="nav-programs">🎮 البرامج والألعاب</button>
-            <button class="nav-item" onclick="switchSection('about', this)" id="nav-about">🏢 من نحن</button>
-            <button class="nav-item" onclick="switchSection('feedback', this)" id="nav-feedback">💬 التعليقات</button>
+        <div class="brand" onclick="switchSection('home')">WCD <span>PLATFORM</span></div>
+        <div class="nav-controls">
+            <button class="home-btn" onclick="switchSection('home')" id="nav-home">الرئيسية 🏠</button>
+            <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="es">Español</option>
+                <option value="tr">Türkçe</option>
+                <option value="ru">Русский</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="hi">हिन्दी</option>
+            </select>
         </div>
-        <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
-            <option value="ar">العربية</option>
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="es">Español</option>
-            <option value="tr">Türkçe</option>
-            <option value="ru">Русский</option>
-            <option value="zh">中文</option>
-            <option value="ja">日本語</option>
-            <option value="hi">हिन्दी</option>
-        </select>
     </nav>
 
     <!-- Main Container -->
     <div class="content-container">
 
-        <!-- 1. VAULT SECTION -->
-        <section id="sec-vault" class="section-view active">
+        <!-- HOME DASHBOARD (CARDS) -->
+        <section id="sec-home" class="section-view active">
             <div class="page-header">
-                <h1 id="h-vault">نظام الخزن الرقمية المشفرة</h1>
-                <p id="p-vault">أنشئ خزنة برقم تسلسلي فريد، أو ابحث عن أي خزنة في العالم برقمها وكلمتها السرية لفتحها!</p>
+                <div>
+                    <h1 id="home-title">أهلاً بك في منصة WCD العالمية 🚀</h1>
+                    <p id="home-sub">اختر القسم الذي تريد استكشافه أو استخدامه:</p>
+                </div>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dash-card" onclick="switchSection('vault')">
+                    <span class="icon">🔒</span>
+                    <h3 id="card-vault-t">الخزن الرقمية المشفرة</h3>
+                    <p id="card-vault-d">أنشئ خزن برقم تسلسلي، ارفع نصوص وصور وفويس، وافتح أي خزنة بالعالم.</p>
+                </div>
+                <div class="dash-card" onclick="switchSection('stories')">
+                    <span class="icon">📖</span>
+                    <h3 id="card-story-t">قسم المؤلفات والقصص</h3>
+                    <p id="card-story-d">اقرأ وانشر القصص والمقالات، مع نظام تقييم وترتيب ذكي للأفضل.</p>
+                </div>
+                <div class="dash-card" onclick="switchSection('programs')">
+                    <span class="icon">🎮</span>
+                    <h3 id="card-prog-t">البرامج والألعاب</h3>
+                    <p id="card-prog-d">شغل الألعاب وبرامج الـ AI بضغطة زر وتجربة ملء الشاشة الفورية.</p>
+                </div>
+                <div class="dash-card" onclick="switchSection('about')">
+                    <span class="icon">🏢</span>
+                    <h3 id="card-about-t">عن الشركة الناشئة</h3>
+                    <p id="card-about-d">تعرف على رسالتنا ورؤيتنا العالمية.</p>
+                </div>
+                <div class="dash-card" onclick="switchSection('feedback')">
+                    <span class="icon">💬</span>
+                    <h3 id="card-feed-t">تعليقات وآراء الزوار</h3>
+                    <p id="card-feed-d">شاركنا رأيك أو انطباعك ليظهر فوراً للجميع.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. VAULT SECTION -->
+        <section id="sec-vault" class="section-view">
+            <div class="page-header">
+                <div>
+                    <h1 id="h-vault">نظام الخزن الرقمية المشفرة</h1>
+                    <p id="p-vault">أنشئ خزنة برقم تسلسلي فريد، أو ابحث عن أي خزنة برقمها وكلمتها السرية!</p>
+                </div>
+                <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
             </div>
 
-            <!-- Create Vault -->
             <div class="card">
                 <h2 id="h-cre-vault">إنشاء خزنة جديدة 🗝️</h2>
                 <div class="form-group"><label id="l-vpass">كلمة السر (إجباري):</label><input type="password" id="vaultPass" class="form-control" placeholder="أدخل كلمة سر الحماية..."></div>
-                <div class="form-group"><label id="l-vtext">النص أو البيان السرية:</label><textarea id="vaultText" class="form-control" rows="2" placeholder="اكتب أسرارك أو نصوصك..."></textarea></div>
-                <div class="form-group"><label id="l-vfile">رفع ملف / صورة / تسجيل صوتي (فويس):</label><input type="file" id="vaultFile" class="form-control" accept="image/*,audio/*"></div>
+                <div class="form-group"><label id="l-vtext">النص أو البيان السري:</label><textarea id="vaultText" class="form-control" rows="2" placeholder="اكتب أسرارك أو نصوصك..."></textarea></div>
+                
+                <!-- Voice Recording Section -->
+                <div class="form-group">
+                    <label id="l-vvoice">تسجيل صوتي (فويس):</label>
+                    <div style="display:flex; gap:10px; margin-bottom:8px;">
+                        <button type="button" class="btn-primary" style="background:#10b981;" onclick="startVoiceRecording()" id="btn-start-rec">بدء التسجيل 🎙️</button>
+                        <button type="button" class="btn-primary" style="background:#ef4444;" onclick="stopVoiceRecording()" id="btn-stop-rec" disabled>إيقاف ⏹️</button>
+                    </div>
+                    <audio id="audioPreview" controls style="width:100%; display:none;"></audio>
+                </div>
+
+                <div class="form-group"><label id="l-vfile">أو رفع صورة أو ملف:</label><input type="file" id="vaultFile" class="form-control" accept="image/*"></div>
                 <button class="btn-primary" onclick="createVault()" id="btn-cre-vault">توليد رقم تسلسلي وحفظ الخزنة 🔑</button>
             </div>
 
-            <!-- Search Vault -->
             <div class="card">
                 <h2 id="h-search-vault">فتح خزنة برقمها التسلسلي 🔓</h2>
                 <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
                     <input type="number" id="searchVaultId" class="form-control" placeholder="رقم الخزنة (مثال: 101)" style="flex:1;">
                     <input type="password" id="searchVaultPass" class="form-control" placeholder="كلمة السر" style="flex:1;">
-                    <button class="btn-primary" style="width:auto; padding:10px 25px;" onclick="openVaultById()" id="btn-open-vault">فتح الخزنة 🔓</button>
+                    <button class="btn-primary" style="width:auto; padding:10px 25px;" onclick="openVaultById()" id="btn-open-vault">فتح 🔓</button>
                 </div>
                 <div id="openedVaultDisplay" style="margin-top:15px;"></div>
             </div>
 
-            <!-- All Vaults Registry -->
             <div class="card">
                 <h2 id="h-reg-vault">سجل الخزن العامة على المنصة</h2>
                 <div id="vaultGrid" class="items-grid"></div>
             </div>
         </section>
 
-        <!-- 2. STORIES & ARTICLES SECTION (WATTPAD STYLE) -->
+        <!-- 2. STORIES & ARTICLES SECTION -->
         <section id="sec-stories" class="section-view">
             <div class="page-header">
-                <h1 id="h-stories">قسم المؤلفات والقصص (واتباد WCD)</h1>
-                <p id="p-stories">استكشف المؤلفات مرتبة ذكياً حسب الأعلى تقيماً وأصواتاً. اضغط على زر (+) لإضافة مؤلّفك!</p>
+                <div>
+                    <h1 id="h-stories">قسم المؤلفات والقصص</h1>
+                    <p id="p-stories">استكشف المؤلفات مرتبة ذكياً حسب الأعلى تقيماً وأصواتاً.</p>
+                </div>
+                <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
             </div>
             <div class="card">
                 <div id="storiesGrid" class="items-grid"></div>
             </div>
-            <!-- Floating Add Button (+) -->
             <div class="fab-btn" onclick="openStoryModal()" title="إضافة مؤلّف جديد">+</div>
         </section>
 
         <!-- 3. PROGRAMS & GAMES SECTION -->
         <section id="sec-programs" class="section-view">
             <div class="page-header">
-                <h1 id="h-progs">مركز البرامج والألعاب العالمية</h1>
-                <p id="p-progs">شغل أي لعبة أو برنامج بضغطة زر وتجربة ملء الشاشة الفورية!</p>
+                <div>
+                    <h1 id="h-progs">مركز البرامج والألعاب العالمية</h1>
+                    <p id="p-progs">شغل أي لعبة أو برنامج بضغطة زر وتجربة ملء الشاشة الفورية!</p>
+                </div>
+                <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
             </div>
 
-            <!-- Sidebar Panel for Publishing & Ranking -->
             <div class="card" style="background:var(--bg-surface); border-color:var(--border-light);">
                 <h2 id="h-pub-prog">نشر برنامج / لعبة جديدة ⚡</h2>
                 <div class="form-group" style="margin-top:10px;"><label id="l-ptitle">اسم البرنامج / اللعبة:</label><input type="text" id="progTitle" class="form-control" placeholder="اسم التطبيق..."></div>
@@ -205,7 +272,7 @@
             </div>
 
             <div class="card">
-                <h2 id="h-prog-list">البرامج والألعاب المنشورة (مرتبة حسب التقييم)</h2>
+                <h2 id="h-prog-list">البرامج والألعاب المنشورة</h2>
                 <div id="programsGrid" class="items-grid"></div>
             </div>
         </section>
@@ -213,13 +280,16 @@
         <!-- 4. ABOUT COMPANY SECTION -->
         <section id="sec-about" class="section-view">
             <div class="page-header">
-                <h1 id="h-about">عن الشركة الناشئة WCD</h1>
-                <p id="p-about">نحن نستطيع أن نفعل - المنظومة العالمية المبتكرة.</p>
+                <div>
+                    <h1 id="h-about">عن الشركة الناشئة WCD</h1>
+                    <p id="p-about">نحن نستطيع أن نفعل - المنظومة العالمية المبتكرة.</p>
+                </div>
+                <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
             </div>
             <div class="card">
-                <h3 style="color:var(--lavender-bright); margin-bottom:10px;" id="h-about-t">رؤيتنا ورسالَتُنا</h3>
+                <h3 style="color:var(--lavender-bright); margin-bottom:10px;" id="h-about-t">رؤيتنا ورسالتنا</h3>
                 <p style="line-height:1.7; color:var(--text-secondary);" id="p-about-d">
-                    شركة WCD الناشئة (نحن نستطيع أن نفعل) هي منصة تقنية عالمية متكاملة تهدف إلى دمج الابتكار البرمجي، الإبداع الأدبي في القصص والمؤلفات، والتخزين الرقمي المشفر الذكي في مكان واحد لخدمة ملايين المستخدمين حول العالم بكل سهولة واحترافية.
+                    شركة WCD الناشئة (نحن نستطيع أن نفعل) هي منصة تقنية عالمية متكاملة تهدف إلى دمج الابتكار البرمجي، الإبداع الأدبي في القصص والمؤلفات، والتخزين الرقمي المشفر الذكي في مكان واحد لخدمة ملايين المستخدمين حول العالم.
                 </p>
             </div>
         </section>
@@ -227,8 +297,11 @@
         <!-- 5. FEEDBACK / COMMENTS SECTION -->
         <section id="sec-feedback" class="section-view">
             <div class="page-header">
-                <h1 id="h-feed">تعليقات وآراء الزوار</h1>
-                <p id="p-feed">شاركنا رأيك أو انطباعك عن المنصة وسيظهر فوراً للجميع.</p>
+                <div>
+                    <h1 id="h-feed">تعليقات وآراء الزوار</h1>
+                    <p id="p-feed">شاركنا رأيك أو انطباعك عن المنصة وسيظهر فوراً للجميع.</p>
+                </div>
+                <button class="home-btn" onclick="switchSection('home')">🏠 الرئيسية</button>
             </div>
             <div class="card">
                 <div class="form-group"><label id="l-fname">اسمك:</label><input type="text" id="feedUser" class="form-control" placeholder="اسمك الكريم..."></div>
@@ -242,36 +315,74 @@
 
     </div>
 
-    <!-- Wattpad Add Story Modal (Hidden by default) -->
+    <!-- Wattpad-free Add Story Modal -->
     <div id="storyModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:9999; display:none; align-items:center; justify-content:center; padding:20px;">
         <div class="card" style="width:100%; max-width:500px; background:var(--bg-surface);">
-            <h2>إضافة مؤلّف جديد (قصة / مقال) 📖</h2>
-            <div class="form-group" style="margin-top:10px;"><label>عنوان المؤلف:</label><input type="text" id="storyTitle" class="form-control" placeholder="عنوان القصة أو المقال..."></div>
-            <div class="form-group"><label>اسم المؤلف / الكاتب:</label><input type="text" id="storyAuthor" class="form-control" placeholder="اسمك..."></div>
-            <div class="form-group"><label>رابط بوستر الغلاف (صورة):</label><input type="text" id="storyPoster" class="form-control" placeholder="رابط صورة البوستر (URL)..."></div>
-            <div class="form-group"><label>نص المؤلف (القصة أو المقال):</label><textarea id="storyContent" class="form-control" rows="5" placeholder="اكتب القصة أو المقال هنا..."></textarea></div>
+            <h2 id="modal-st-title">إضافة مؤلّف جديد (قصة / مقال) 📖</h2>
+            <div class="form-group" style="margin-top:10px;"><label id="modal-l-title">عنوان المؤلف:</label><input type="text" id="storyTitle" class="form-control" placeholder="عنوان القصة أو المقال..."></div>
+            <div class="form-group"><label id="modal-l-author">اسم المؤلف / الكاتب:</label><input type="text" id="storyAuthor" class="form-control" placeholder="اسمك..."></div>
+            <div class="form-group"><label id="modal-l-poster">رابط بوستر الغلاف (صورة):</label><input type="text" id="storyPoster" class="form-control" placeholder="رابط صورة البوستر (URL)..."></div>
+            <div class="form-group"><label id="modal-l-content">نص المؤلف (القصة أو المقال):</label><textarea id="storyContent" class="form-control" rows="5" placeholder="اكتب القصة أو المقال هنا..."></textarea></div>
             <div style="display:flex; gap:10px; margin-top:15px;">
-                <button class="btn-primary" onclick="publishStory()">نشر المؤلف 🚀</button>
-                <button class="btn-primary" style="background:var(--border-color);" onclick="closeStoryModal()">إلغاء</button>
+                <button class="btn-primary" onclick="publishStory()" id="modal-btn-pub">نشر المؤلف 🚀</button>
+                <button class="btn-primary" style="background:var(--border-color);" onclick="closeStoryModal()" id="modal-btn-close">إلغاء</button>
             </div>
         </div>
     </div>
 
     <script>
-        function switchSection(id, btn) {
+        function switchSection(id) {
             document.querySelectorAll('.section-view').forEach(s => s.classList.remove('active'));
-            if(btn) {
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                btn.classList.add('active');
-            }
             document.getElementById('sec-' + id).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // --- VOICE RECORDING LOGIC ---
+        let mediaRecorder;
+        let audioChunks = [];
+        let recordedAudioBase64 = null;
+
+        async function startVoiceRecording() {
+            audioChunks = [];
+            recordedAudioBase64 = null;
+            try {
+                let stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.ondataavailable = event => { audioChunks.push(event.data); };
+                mediaRecorder.onstop = () => {
+                    let audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        recordedAudioBase64 = e.target.result;
+                        let preview = document.getElementById('audioPreview');
+                        preview.src = recordedAudioBase64;
+                        preview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(audioBlob);
+                };
+                mediaRecorder.start();
+                document.getElementById('btn-start-rec').disabled = true;
+                document.getElementById('btn-stop-rec').disabled = false;
+                alert('جاري تسجيل الصوت الآن... تحدث بوضوح ثم اضغط إيقاف.');
+            } catch (err) {
+                alert('عذراً، لم نتمكن من الوصول للميكروفون. تأكد من السماح للمتصفح بذلك.');
+            }
+        }
+
+        function stopVoiceRecording() {
+            if(mediaRecorder) {
+                mediaRecorder.stop();
+                document.getElementById('btn-start-rec').disabled = false;
+                document.getElementById('btn-stop-rec').disabled = true;
+                alert('تم حفظ التسجيل الصوتي بنجاح!');
+            }
         }
 
         // --- STATE & LOCALSTORAGE ---
-        let vaults = JSON.parse(localStorage.getItem('wcd_v11_vaults') || '[]');
-        let stories = JSON.parse(localStorage.getItem('wcd_v11_stories') || '[]');
-        let programs = JSON.parse(localStorage.getItem('wcd_v11_progs') || '[]');
-        let feedbacks = JSON.parse(localStorage.getItem('wcd_v11_feeds') || '[]');
+        let vaults = JSON.parse(localStorage.getItem('wcd_v12_vaults') || '[]');
+        let stories = JSON.parse(localStorage.getItem('wcd_v12_stories') || '[]');
+        let programs = JSON.parse(localStorage.getItem('wcd_v12_progs') || '[]');
+        let feedbacks = JSON.parse(localStorage.getItem('wcd_v12_feeds') || '[]');
 
         // --- VAULT LOGIC ---
         function createVault() {
@@ -280,32 +391,36 @@
             let fileInput = document.getElementById('vaultFile');
 
             if(!pass) return alert('كلمة السر إجبارية لحماية الخزنة!');
-            if(!text && fileInput.files.length === 0) return alert('أدخل نص أو ارفع ملف/صورة/فويس!');
+            if(!text && !recordedAudioBase64 && fileInput.files.length === 0) return alert('أدخل نص أو سجل فويس أو ارفع صورة!');
 
             let vaultId = vaults.length > 0 ? vaults[vaults.length - 1].vaultId + 1 : 101;
 
             if(fileInput.files.length > 0) {
                 let reader = new FileReader();
-                let fileType = fileInput.files[0].type;
                 reader.onload = function(e) {
-                    vaults.push({ vaultId, pass, text, media: e.target.result, fileType, date: new Date().toLocaleDateString() });
-                    localStorage.setItem('wcd_v11_vaults', JSON.stringify(vaults));
-                    alert(`تم إنشاء الخزنة بنجاح! 🎉\nرقمك التسلسلي هو: #${vaultId}\nاحفظه مع كلمة السر.`);
-                    clearVaultForm(); renderVaults();
+                    saveVaultData(vaultId, pass, text, e.target.result, 'image');
                 }
                 reader.readAsDataURL(fileInput.files[0]);
+            } else if(recordedAudioBase64) {
+                saveVaultData(vaultId, pass, text, recordedAudioBase64, 'audio');
             } else {
-                vaults.push({ vaultId, pass, text, media: null, fileType: null, date: new Date().toLocaleDateString() });
-                localStorage.setItem('wcd_v11_vaults', JSON.stringify(vaults));
-                alert(`تم إنشاء الخزنة بنجاح! 🎉\nرقمك التسلسلي هو: #${vaultId}\nاحفظه مع كلمة السر.`);
-                clearVaultForm(); renderVaults();
+                saveVaultData(vaultId, pass, text, null, null);
             }
+        }
+
+        function saveVaultData(vaultId, pass, text, media, mediaType) {
+            vaults.push({ vaultId, pass, text, media, mediaType, date: new Date().toLocaleDateString() });
+            localStorage.setItem('wcd_v12_vaults', JSON.stringify(vaults));
+            alert(`تم إنشاء الخزنة بنجاح! 🎉\nرقمك التسلسلي هو: #${vaultId}\nاحفظه مع كلمة السر.`);
+            clearVaultForm(); renderVaults();
         }
 
         function clearVaultForm() {
             document.getElementById('vaultPass').value = '';
             document.getElementById('vaultText').value = '';
             document.getElementById('vaultFile').value = '';
+            document.getElementById('audioPreview').style.display = 'none';
+            recordedAudioBase64 = null;
         }
 
         function renderVaults() {
@@ -326,7 +441,11 @@
             if(v && v.pass === pass) {
                 let box = document.getElementById(`vbox-${id}`);
                 box.style.display = 'block';
-                let mediaHtml = v.media ? (v.fileType && v.fileType.startsWith('audio') ? `<audio controls src="${v.media}" style="width:100%; margin-top:8px;"></audio>` : `<img src="${v.media}" class="poster-img" style="margin-top:8px;">`) : '';
+                let mediaHtml = '';
+                if(v.media) {
+                    if(v.mediaType === 'audio') mediaHtml = `<audio controls src="${v.media}" style="width:100%; margin-top:8px;"></audio>`;
+                    else mediaHtml = `<img src="${v.media}" class="poster-img" style="margin-top:8px;">`;
+                }
                 box.innerHTML = `<p style="color:var(--lavender-bright);">${v.text || ''}</p>${mediaHtml}`;
             } else alert('كلمة السر غير صحيحة!');
         }
@@ -337,12 +456,16 @@
             let v = vaults.find(x => x.vaultId === id);
             let disp = document.getElementById('openedVaultDisplay');
             if(v && v.pass === pass) {
-                let mediaHtml = v.media ? (v.fileType && v.fileType.startsWith('audio') ? `<audio controls src="${v.media}" style="width:100%; margin-top:8px;"></audio>` : `<img src="${v.media}" class="poster-img" style="margin-top:8px;">`) : '';
+                let mediaHtml = '';
+                if(v.media) {
+                    if(v.mediaType === 'audio') mediaHtml = `<audio controls src="${v.media}" style="width:100%; margin-top:8px;"></audio>`;
+                    else mediaHtml = `<img src="${v.media}" class="poster-img" style="margin-top:8px;">`;
+                }
                 disp.innerHTML = `<div class="card" style="border-color:var(--lavender-bright);"><span class="tag">محتويات خزنة #${v.vaultId}</span><p style="color:var(--lavender-bright); margin-top:10px;">${v.text || ''}</p>${mediaHtml}</div>`;
             } else alert('رقم الخزنة أو كلمة السر خطأ!');
         }
 
-        // --- STORIES / WATTPAD LOGIC (Sorted by Score/Votes & Rating Algorithm) ---
+        // --- STORIES LOGIC ---
         function openStoryModal() { document.getElementById('storyModal').style.display = 'flex'; }
         function closeStoryModal() { document.getElementById('storyModal').style.display = 'none'; }
 
@@ -353,19 +476,16 @@
             let content = document.getElementById('storyContent').value.trim();
 
             if(!title || !content) return alert('أدخل العنوان والمحتوى!');
-            stories.push({ id: Date.now(), title, author, poster, content, ratings: [10], votesCount: 1 });
-            localStorage.setItem('wcd_v11_stories', JSON.stringify(stories));
+            stories.push({ id: Date.now(), title, author, poster, content, ratings: [10] });
+            localStorage.setItem('wcd_v12_stories', JSON.stringify(stories));
             closeStoryModal(); renderStories(); alert('تم نشر المؤلف بنجاح 📖');
         }
 
         function renderStories() {
-            // Smart Sorting Algorithm: Weighted by Average Rating & Total Votes Count
             let sorted = [...stories].sort((a,b) => {
                 let avgA = a.ratings.reduce((x,y)=>x+y,0)/a.ratings.length;
                 let avgB = b.ratings.reduce((x,y)=>x+y,0)/b.ratings.length;
-                let scoreA = avgA * Math.log(a.ratings.length + 1);
-                let scoreB = avgB * Math.log(b.ratings.length + 1);
-                return scoreB - scoreA;
+                return (avgB * Math.log(b.ratings.length + 1)) - (avgA * Math.log(a.ratings.length + 1));
             });
 
             document.getElementById('storiesGrid').innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد مؤلفات منشورة بعد.</p>' :
@@ -378,7 +498,7 @@
                         <h3>${s.title}</h3>
                         <p>${s.content.substring(0, 100)}...</p>
                         <div class="rating-box">
-                            <span>التقييم: <b>${avg} / 10 ⭐ (${s.ratings.length} أصوات)</b></span>
+                            <span>التقييم: <b>${avg} / 10 ⭐ (${s.ratings.length})</b></span>
                             <select class="rating-select" onchange="rateStory(${s.id}, this.value)"><option value="">تقييم</option>${[10,9,8,7,6,5,4,3,2,1].map(n=>`<option value="${n}">${n}</option>`).join('')}</select>
                         </div>
                     </div>
@@ -390,11 +510,11 @@
             if(!val) return;
             let s = stories.find(x => x.id === id);
             s.ratings.push(parseInt(val));
-            localStorage.setItem('wcd_v11_stories', JSON.stringify(stories));
+            localStorage.setItem('wcd_v12_stories', JSON.stringify(stories));
             renderStories();
         }
 
-        // --- PROGRAMS & GAMES LOGIC (Fullscreen & Smart Algorithm Sorting) ---
+        // --- PROGRAMS LOGIC ---
         function publishProgram() {
             let title = document.getElementById('progTitle').value.trim();
             let code = document.getElementById('progCode').value.trim();
@@ -402,7 +522,7 @@
             if(!title || !code) return alert('أدخل العنوان والكود أو الرابط!');
 
             programs.push({ id: Date.now(), title, code, desc, ratings: [10] });
-            localStorage.setItem('wcd_v11_progs', JSON.stringify(programs));
+            localStorage.setItem('wcd_v12_progs', JSON.stringify(programs));
             document.getElementById('progTitle').value = '';
             document.getElementById('progCode').value = '';
             document.getElementById('progDesc').value = '';
@@ -410,13 +530,10 @@
         }
 
         function renderPrograms() {
-            // Smart Sorting Algorithm: Highest score and highest votes count comes first
             let sorted = [...programs].sort((a,b) => {
                 let avgA = a.ratings.reduce((x,y)=>x+y,0)/a.ratings.length;
                 let avgB = b.ratings.reduce((x,y)=>x+y,0)/b.ratings.length;
-                let scoreA = avgA * Math.log(a.ratings.length + 1);
-                let scoreB = avgB * Math.log(b.ratings.length + 1);
-                return scoreB - scoreA;
+                return (avgB * Math.log(b.ratings.length + 1)) - (avgA * Math.log(a.ratings.length + 1));
             });
 
             document.getElementById('programsGrid').innerHTML = sorted.length === 0 ? '<p style="color:var(--text-secondary);">لا توجد برامج منشورة بعد.</p>' :
@@ -441,7 +558,7 @@
             if(!val) return;
             let p = programs.find(x => x.id === id);
             p.ratings.push(parseInt(val));
-            localStorage.setItem('wcd_v11_progs', JSON.stringify(programs));
+            localStorage.setItem('wcd_v12_progs', JSON.stringify(programs));
             renderPrograms();
         }
 
@@ -450,11 +567,8 @@
             document.getElementById('fullscreen-title').textContent = title;
             let iframe = document.getElementById('fullscreen-iframe');
             document.getElementById('fullscreen-overlay').style.display = 'flex';
-            if(code.startsWith('http') || code.endsWith('.html')) {
-                iframe.src = code;
-            } else {
-                iframe.srcdoc = code;
-            }
+            if(code.startsWith('http') || code.endsWith('.html')) iframe.src = code;
+            else iframe.srcdoc = code;
         }
 
         function closeFullscreen() {
@@ -468,7 +582,7 @@
             let text = document.getElementById('feedText').value.trim();
             if(!text) return;
             feedbacks.unshift({ user, text, time: new Date().toLocaleTimeString() });
-            localStorage.setItem('wcd_v11_feeds', JSON.stringify(feedbacks));
+            localStorage.setItem('wcd_v12_feeds', JSON.stringify(feedbacks));
             document.getElementById('feedText').value = '';
             renderFeedbacks();
         }
@@ -478,28 +592,37 @@
             feedbacks.map(f => `<div class="comment-item"><b>${f.user}</b> <small style="color:#aaa;">(${f.time})</small>: ${f.text}</div>`).join('');
         }
 
-        // --- 10 LANGUAGES ENGINE ---
+        // --- 10 LANGUAGES ENGINE (FULL TRANSLATION) ---
         const dictionary = {
-            ar: { dir: 'rtl', v: '🔒 الخزن الرقمية', s: '📖 المؤلفات (واتباد)', p: '🎮 البرامج والألعاب', a: '🏢 من نحن', f: '💬 التعليقات' },
-            en: { dir: 'ltr', v: '🔒 Digital Vaults', s: '📖 Stories (Wattpad)', p: '🎮 Apps & Games', a: '🏢 About Us', f: '💬 Feedback' },
-            fr: { dir: 'ltr', v: '🔒 Coffres Numériques', s: '📖 Histoires (Wattpad)', p: '🎮 Applications & Jeux', a: '🏢 À Propos', f: '💬 Avis' },
-            de: { dir: 'ltr', v: '🔒 Digitale Tresore', s: '📖 Geschichten (Wattpad)', p: '🎮 Apps & Spiele', a: '🏢 Über Uns', f: '💬 Feedback' },
-            es: { dir: 'ltr', v: '🔒 Bóvedas Digitales', s: '📖 Historias (Wattpad)', p: '🎮 Aplicaciones y Juegos', a: '🏢 Sobre Nosotros', f: '💬 Comentarios' },
-            tr: { dir: 'ltr', v: '🔒 Dijital Kasalar', s: '📖 Hikayeler (Wattpad)', p: '🎮 Uygulamalar ve Oyunlar', a: '🏢 Hakkımızda', f: '💬 Geri Bildirim' },
-            ru: { dir: 'ltr', v: '🔒 Цифровые Сейфы', s: '📖 Истории (Wattpad)', p: '🎮 Приложения и Игры', a: '🏢 О Нас', f: '💬 Отзывы' },
-            zh: { dir: 'ltr', v: '🔒 数字保险库', s: '📖 故事与小说', p: '🎮 应用与游戏', a: '🏢 关于我们', f: '💬 用户反馈' },
-            ja: { dir: 'ltr', v: '🔒 デジタル金庫', s: '📖 ストーリー', p: '🎮 アプリ＆ゲーム', a: '🏢 会社概要', f: '💬 フィードバック' },
-            hi: { dir: 'ltr', v: '🔒 डिजिटल तिजोरी', s: '📖 कहानियां', p: '🎮 ऐप्स और गेम्स', a: '🏢 हमारे बारे में', f: '💬 प्रतिक्रिया' }
+            ar: { dir: 'rtl', hTitle: 'أهلاً بك في منصة WCD العالمية 🚀', hSub: 'اختر القسم الذي تريد استكشافه أو استخدامه:', cvt: 'الخزن الرقمية المشفرة', cvd: 'أنشئ خزن برقم تسلسلي، ارفع نصوص وصور وفويس، وافتح أي خزنة بالعالم.', cst: 'قسم المؤلفات والقصص', csd: 'اقرأ وانشر القصص والمقالات، مع نظام تقييم وترتيب ذكي للأفضل.', cpt: 'البرامج والألعاب', cpd: 'شغل الألعاب وبرامج الـ AI بضغطة زر وتجربة ملء الشاشة الفورية.', cat: 'عن الشركة الناشئة', cad: 'تعرف على رسالتنا ورؤيتنا العالمية.', cft: 'تعليقات وآراء الزوار', cfd: 'شاركنا رأيك أو انطباعك ليظهر فوراً للجميع.', homeBtn: 'الرئيسية 🏠', close: 'خروج ✕' },
+            en: { dir: 'ltr', hTitle: 'Welcome to WCD Global Platform 🚀', hSub: 'Choose the section you want to explore or use:', cvt: 'Encrypted Digital Vaults', cvd: 'Create vaults with serial numbers, upload texts, images, and voice, and open any vault.', cst: 'Stories & Articles', csd: 'Read and publish stories and articles with smart rating & ranking.', cpt: 'Apps & Games', cpd: 'Run games and AI apps with instant full-screen experience.', cat: 'About Startup', cad: 'Learn about our mission and global vision.', cft: 'Visitor Feedback', cfd: 'Share your thoughts or feedback instantly.', homeBtn: 'Home 🏠', close: 'Close ✕' },
+            fr: { dir: 'ltr', hTitle: 'Bienvenue sur la plateforme WCD 🚀', hSub: 'Choisissez la section à explorer :', cvt: 'Coffres Numériques', cvd: 'Créez des coffres avec numéro de série, textes, images et voix.', cst: 'Histoires & Articles', csd: 'Lisez et publiez des histoires avec notation intelligente.', cpt: 'Applications & Jeux', cpd: 'Lancez des jeux et des applications IA en plein écran.', cat: 'À Propos', cad: 'Découvrez notre vision globale.', cft: 'Avis des Visiteurs', cfd: 'Partagez vos impressions instantanément.', homeBtn: 'Accueil 🏠', close: 'Fermer ✕' },
+            de: { dir: 'ltr', hTitle: 'Willkommen bei der WCD Plattform 🚀', hSub: 'Wählen Sie den gewünschten Bereich:', cvt: 'Digitale Tresore', cvd: 'Erstellen Sie Tresore mit Seriennummer, Texten, Bildern und Sprache.', cst: 'Geschichten & Artikel', csd: 'Lesen und veröffentlichen Sie mit intelligenter Bewertung.', cpt: 'Apps & Spiele', cpd: 'Starten Sie Spiele und KI-Apps im Vollbildmodus.', cat: 'Über Uns', cad: 'Erfahren Sie mehr über unsere Vision.', cft: 'Besucher-Feedback', cfd: 'Teilen Sie Ihre Gedanken sofort mit.', homeBtn: 'Startseite 🏠', close: 'Schließen ✕' },
+            es: { dir: 'ltr', hTitle: 'Bienvenido a la Plataforma WCD 🚀', hSub: 'Elige la sección que deseas explorar:', cvt: 'Bóvedas Digitales', cvd: 'Crea bóvedas con número de serie, textos, imágenes y voz.', cst: 'Historias y Artículos', csd: 'Lee y publica historias con calificación inteligente.', cpt: 'Aplicaciones y Juegos', cpd: 'Ejecuta juegos y apps de IA en pantalla completa.', cat: 'Sobre Nosotros', cad: 'Conoce nuestra visión global.', cft: 'Comentarios', cfd: 'Comparte tus opiniones al instante.', homeBtn: 'Inicio 🏠', close: 'Cerrar ✕' },
+            tr: { dir: 'ltr', hTitle: 'WCD Küresel Platformuna Hoş Geldiniz 🚀', hSub: 'Keşfetmek istediğiniz bölümü seçin:', cvt: 'Dijital Kasalar', cvd: 'Seri numaralı kasalar oluşturun, metin, resim ve ses yükleyin.', cst: 'Hikayeler ve Makaleler', csd: 'Akıllı derecelendirme ile hikayeler okuyun ve yayınlayın.', cpt: 'Uygulamalar ve Oyunlar', cpd: 'Tam ekran deneyimiyle oyunları ve AI uygulamalarını çalıştırın.', cat: 'Hakkımızda', cad: 'Küresel vizyonumuz hakkında bilgi edinin.', cft: 'Ziyaretçi Geri Bildirimi', cfd: 'Düşüncelerinizi anında paylaşın.', homeBtn: 'Ana Sayfa 🏠', close: 'Kapat ✕' },
+            ru: { dir: 'ltr', hTitle: 'Добро пожаловать на платформу WCD 🚀', hSub: 'Выберите раздел для изучения:', cvt: 'Цифровые Сейфы', cvd: 'Создавайте сейфы с серийным номером, текстом, фото и голосом.', cst: 'Истории и Статьи', csd: 'Читайте и публикуйте истории с умным рейтингом.', cpt: 'Приложения и Игры', cpd: 'Запускайте игры и ИИ-приложения на весь экран.', cat: 'О Нас', cad: 'Узнайте о нашей глобальной миссии.', cft: 'Отзывы Посетителей', cfd: 'Поделитесь своими впечатлениями мгновенно.', homeBtn: 'Главная 🏠', close: 'Закрыть ✕' },
+            zh: { dir: 'ltr', hTitle: '欢迎来到 WCD 全球平台 🚀', hSub: '选择您要探索或使用的部分：', cvt: '数字保险库', cvd: '创建带序列号的保险库，上传文本、图片和语音。', cst: '故事与文章', csd: '阅读并发布带有智能评分的故事。', cpt: '应用与游戏', cpd: '一键全屏体验游戏和AI应用。', cat: '关于我们', cad: '了解我们的全球愿景。', cft: '访客反馈', cfd: '立即分享您的想法。', homeBtn: '首页 🏠', close: '关闭 ✕' },
+            ja: { dir: 'ltr', hTitle: 'WCDグローバルプラットフォームへようこそ 🚀', hSub: '探索または使用するセクションを選択してください：', cvt: 'デジタル金庫', cvd: 'シリアル番号付きの金庫を作成し、テキスト、画像、音声を保存。', cst: 'ストーリーと記事', csd: 'スマート評価システムでストーリーを読んで公開。', cpt: 'アプリ＆ゲーム', cpd: '全画面体験でゲームやAIアプリを実行。', cat: '会社概要', cad: '私たちのグローバルビジョンについて知る。', cft: '訪問者のフィードバック', cfd: '感想を瞬時に共有。', homeBtn: 'ホーム 🏠', close: '閉じる ✕' },
+            hi: { dir: 'ltr', hTitle: 'WCD ग्लोबल प्लेटफ़ॉर्म में आपका स्वागत है 🚀', hSub: 'वह अनुभाग चुनें जिसे आप देखना चाहते हैं:', cvt: 'डिजिटल तिजोरी', cvd: 'सीरियल नंबर के साथ तिजोरी बनाएं, टेक्स्ट, चित्र और आवाज़ अपलोड करें।', cst: 'कहानियाँ और लेख', csd: 'स्मार्ट रेटिंग के साथ कहानियाँ पढ़ें और प्रकाशित करें।', cpt: 'ऐप्स और गेम्स', cpd: 'पूर्ण-स्क्रीन अनुभव के साथ गेम और AI ऐप्स चलाएं।', cat: 'हमारे बारे में', cad: 'हमारी वैश्विक दृष्टि के बारे में जानें।', cft: 'प्रतिक्रिया', cfd: 'तुरंत अपनी राय साझा करें।', homeBtn: 'होम 🏠', close: 'बंद करें ✕' }
         };
 
         function changeLanguage(lang) {
             let l = dictionary[lang] || dictionary['ar'];
             document.getElementById('htmlTag').setAttribute('dir', l.dir);
-            document.getElementById('nav-vault').innerHTML = l.v;
-            document.getElementById('nav-stories').innerHTML = l.s;
-            document.getElementById('nav-programs').innerHTML = l.p;
-            document.getElementById('nav-about').innerHTML = l.a;
-            document.getElementById('nav-feedback').innerHTML = l.f;
+            document.getElementById('home-title').textContent = l.hTitle;
+            document.getElementById('home-sub').textContent = l.hSub;
+            document.getElementById('card-vault-t').textContent = l.cvt;
+            document.getElementById('card-vault-d').textContent = l.cvd;
+            document.getElementById('card-story-t').textContent = l.cst;
+            document.getElementById('card-story-d').textContent = l.csd;
+            document.getElementById('card-prog-t').textContent = l.cpt;
+            document.getElementById('card-prog-d').textContent = l.cpd;
+            document.getElementById('card-about-t').textContent = l.cat;
+            document.getElementById('card-about-d').textContent = l.cad;
+            document.getElementById('card-feed-t').textContent = l.cft;
+            document.getElementById('card-feed-d').textContent = l.cfd;
+            document.querySelectorAll('.home-btn').forEach(b => b.textContent = l.homeBtn);
+            document.getElementById('txt-close').textContent = l.close;
         }
 
         // Init
